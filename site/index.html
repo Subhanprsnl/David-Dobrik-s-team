@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>David's Halloween Concepts</title>
+<meta name="description" content="David's Halloween. Friday, October 30. Presented by fomo. RSVP to get on the list.">
+<meta name="rsvp-endpoint" content="__RSVP_ENDPOINT__">
+<link rel="canonical" href="__SITE_URL__/">
+<link rel="icon" type="image/png" sizes="64x64" href="/assets/img/favicon-64.png">
+<link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="David's Halloween">
+<meta property="og:title" content="David's Halloween · Concepts">
+<meta property="og:description" content="David's Halloween. Friday, October 30. Presented by fomo. RSVP to get on the list.">
+<meta property="og:url" content="__SITE_URL__/">
+<meta property="og:image" content="__SITE_URL__/assets/img/og-flyer.jpg">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The David's Halloween flyer: a ghost in sunglasses on a pool float under the moon.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="__SITE_URL__/assets/img/og-flyer.jpg">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#EDEDE5">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0f0e0a">
+<style>
+/* Layout: an Apple-style product page in Rumor's materials — translucent nav, centered hero with a three-phone lineup,
+   one large tile per concept, then a compare table. Rumor bone + ink, the flyer's orange as the single accent. */
+:root{
+  --bg:#EDEDE5; --surface:#F6F6F1; --tile:#FFFFFF; --ink:#222523; --ink-2:#5E625C; --ink-3:#8B8E86; --hair:rgba(34,37,35,.12);
+  --accent:#FE4E09; --accent-ink:#B73500; --sky:#5FB2E8; --night:#0F0E0A; --night-2:#1A1913; --on-night:#EFE6D2; --on-night-2:#A59E8E;
+  --nav:rgba(237,237,229,.72); --shadow:0 1px 2px rgba(34,37,35,.06),0 18px 50px -24px rgba(34,37,35,.28);
+  --sans:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display","Helvetica Neue","Segoe UI",Roboto,Arial,sans-serif;
+  --display:-apple-system,BlinkMacSystemFont,"SF Pro Display","Helvetica Neue","Segoe UI",Roboto,Arial,sans-serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0F0E0A; --surface:#17160F; --tile:#1B1A14; --ink:#EFE6D2; --ink-2:#B9B2A2; --ink-3:#8C8676; --hair:rgba(239,230,210,.12);
+  --accent:#FE4E09; --accent-ink:#FF8A5C; --nav:rgba(15,14,10,.7); --shadow:0 1px 2px rgba(0,0,0,.4),0 24px 60px -28px rgba(0,0,0,.9); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0F0E0A; --surface:#17160F; --tile:#1B1A14; --ink:#EFE6D2; --ink-2:#B9B2A2; --ink-3:#8C8676; --hair:rgba(239,230,210,.12);
+  --accent:#FE4E09; --accent-ink:#FF8A5C; --nav:rgba(15,14,10,.7); --shadow:0 1px 2px rgba(0,0,0,.4),0 24px 60px -28px rgba(0,0,0,.9); color-scheme:dark}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:transparent;scroll-behavior:smooth;scroll-padding-top:64px}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.47 var(--sans);letter-spacing:-.022em;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.skip-link{position:absolute;left:-999px;top:8px}.skip-link:focus{left:16px;z-index:20;background:var(--tile);padding:8px 12px;border-radius:8px}
+
+/* ---------- translucent nav (material over content) ---------- */
+.nav{position:sticky;top:0;z-index:10;padding-top:env(safe-area-inset-top,0px);background:var(--nav);
+  -webkit-backdrop-filter:saturate(180%) blur(20px);backdrop-filter:saturate(180%) blur(20px);box-shadow:0 1px 0 var(--hair)}
+.nav-in{max-width:1024px;margin:0 auto;padding-inline:16px;height:48px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{display:flex;align-items:center;gap:12px;min-height:44px;text-decoration:none;color:var(--ink)}
+.brand svg{height:15px;width:auto;display:block}
+.brand .bar{width:1px;height:14px;background:var(--hair)}
+.brand .studio{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-2)}
+.nav-links{display:flex;gap:4px;margin:0;padding:0;list-style:none}
+.nav-links a{display:inline-flex;align-items:center;min-height:36px;padding:0 10px;border-radius:999px;font-size:13px;letter-spacing:-.01em;color:var(--ink-2);text-decoration:none;transition:color .2s ease,background-color .2s ease}
+@media (hover:hover) and (pointer:fine){.nav-links a:hover{color:var(--ink);background:var(--hair)}}
+@media (max-width:560px){.nav-links li:not(:last-child){display:none}}
+
+/* ---------- hero ---------- */
+.hero{text-align:center;padding:clamp(48px,9vw,96px) 16px 0;overflow:hidden}
+.eyebrow{margin:0 0 10px;font-size:15px;font-weight:600;letter-spacing:-.01em;color:var(--accent-ink)}
+h1{font-family:var(--display);font-weight:700;font-size:clamp(44px,8.2vw,88px);line-height:1.02;letter-spacing:-.035em;margin:0;text-wrap:balance}
+.sub{max-width:34ch;margin:14px auto 0;font-size:clamp(19px,2.4vw,24px);line-height:1.3;letter-spacing:-.02em;color:var(--ink-2);text-wrap:balance}
+.hero-ctas{display:flex;gap:22px;justify-content:center;flex-wrap:wrap;margin-top:22px}
+.link{display:inline-flex;align-items:center;gap:4px;font-size:17px;color:var(--accent-ink);text-decoration:none;min-height:44px}
+.link span{transition:transform .25s cubic-bezier(.2,0,0,1)}
+@media (hover:hover) and (pointer:fine){.link:hover{text-decoration:underline}.link:hover span{transform:translateX(3px)}}
+.pill{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 22px;border-radius:999px;background:var(--accent);color:#fff;font-size:17px;font-weight:500;text-decoration:none;
+  transition:transform .12s ease-out,filter .2s ease}
+@media (hover:hover) and (pointer:fine){.pill:hover{filter:brightness(1.06)}}
+.pill:active,.link:active{transform:scale(.97)}
+
+/* the lineup: three phones, centre one forward (iPhone family shot) */
+.lineup{position:relative;display:flex;justify-content:center;align-items:flex-end;gap:clamp(10px,2.4vw,28px);margin:clamp(36px,6vw,64px) auto 0;max-width:980px;padding-inline:16px}
+.phone{position:relative;display:block;flex:0 1 auto;width:clamp(150px,24vw,250px);aspect-ratio:390/844;border-radius:clamp(26px,4vw,42px);padding:clamp(5px,.8vw,8px);
+  background:linear-gradient(145deg,#2b2a26,#0b0b09 55%,#24231f);box-shadow:0 0 0 1px rgba(255,255,255,.06) inset,0 30px 60px -30px rgba(0,0,0,.55),0 12px 24px -16px rgba(0,0,0,.4);
+  text-decoration:none;transition:transform .5s cubic-bezier(.2,0,0,1);animation:rise .9s cubic-bezier(.2,0,0,1) both}
+.phone img{display:block;width:100%;height:100%;object-fit:cover;border-radius:clamp(21px,3.3vw,35px)}
+.phone::after{content:"";position:absolute;top:clamp(9px,1.4vw,14px);left:50%;width:28%;height:clamp(10px,1.5vw,18px);transform:translateX(-50%);border-radius:999px;background:#000}
+.phone.side{transform:translateY(clamp(18px,3vw,36px)) scale(.9)}
+.phone.l{animation-delay:.08s}.phone.r{animation-delay:.16s}
+@keyframes rise{from{transform:translateY(40px)}}
+.phone.side{animation-name:riseSide}
+@keyframes riseSide{from{transform:translateY(calc(clamp(18px,3vw,36px) + 40px)) scale(.9)}}
+@media (hover:hover) and (pointer:fine){.phone:hover{transform:translateY(-8px)}.phone.side:hover{transform:translateY(calc(clamp(18px,3vw,36px) - 8px)) scale(.9)}}
+.phone:focus-visible{outline:3px solid var(--accent);outline-offset:6px}
+@media (max-width:620px){.lineup{gap:8px}.phone{width:31vw}}
+.cap{display:flex;justify-content:center;gap:clamp(10px,2.4vw,28px);max-width:980px;margin:14px auto 0;padding-inline:16px;font-size:13px;color:var(--ink-3)}
+.cap span{width:clamp(150px,24vw,250px);text-align:center}
+@media (max-width:620px){.cap{gap:8px}.cap span{width:31vw;font-size:12px}}
+
+/* ---------- concept tiles ---------- */
+section{max-width:1024px;margin:0 auto;padding:clamp(72px,10vw,120px) 16px 0}
+.section-head{text-align:center;margin-bottom:clamp(28px,4vw,44px)}
+h2{font-family:var(--display);font-weight:700;font-size:clamp(32px,5vw,56px);line-height:1.05;letter-spacing:-.03em;margin:0;text-wrap:balance}
+.section-head p{margin:10px auto 0;max-width:46ch;color:var(--ink-2);font-size:19px;line-height:1.4;text-wrap:balance}
+.tiles{display:grid;gap:20px}
+.tile{position:relative;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);align-items:center;gap:clamp(20px,4vw,48px);
+  padding:clamp(28px,5vw,56px);border-radius:28px;background:var(--tile);box-shadow:var(--shadow);overflow:hidden;isolation:isolate}
+.tile.dark{background:var(--night);color:var(--on-night)}
+.tile.dark .tile-copy p,.tile.dark .specs li{color:var(--on-night-2)}
+.tile.dark .specs li{border-color:rgba(239,230,210,.14)}
+.tile.dark .link{color:#FF8A5C}
+.tile.dark::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(70% 60% at 85% 20%,rgba(254,78,9,.22),transparent 70%)}
+@media (max-width:760px){.tile{grid-template-columns:minmax(0,1fr);text-align:center}.tile .shot{order:-1}.specs,.tile-ctas{justify-content:center}}
+.num{font-size:15px;font-weight:600;color:var(--accent-ink);margin:0 0 8px;letter-spacing:-.01em}
+.tile.dark .num{color:#FF8A5C}
+.tile h3{font-family:var(--display);font-weight:700;font-size:clamp(30px,4vw,44px);line-height:1.06;letter-spacing:-.03em;margin:0}
+.tile .tag{display:block;margin-top:6px;font-size:clamp(19px,2.2vw,24px);line-height:1.25;letter-spacing:-.02em;font-weight:600;color:var(--ink-2)}
+.tile.dark .tag{color:var(--on-night-2)}
+.tile-copy p{margin:16px 0 0;color:var(--ink-2);font-size:17px;line-height:1.5;max-width:42ch;text-wrap:pretty}
+@media (max-width:760px){.tile-copy p{margin-inline:auto}}
+.specs{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0 0;padding:0;list-style:none}
+.specs li{font-size:13px;line-height:1;padding:8px 12px;border-radius:999px;border:1px solid var(--hair);color:var(--ink-2)}
+.tile-ctas{display:flex;flex-wrap:wrap;align-items:center;gap:18px;margin-top:24px}
+.shot{justify-self:center}
+.shot .phone{width:clamp(180px,26vw,260px);animation:none}
+.shot .phone.tilt{transform:rotate(-2deg)}
+@media (hover:hover) and (pointer:fine){.shot .phone.tilt:hover{transform:rotate(0) translateY(-6px)}}
+
+/* ---------- compare ---------- */
+.compare-wrap{overflow-x:auto;border-radius:22px;background:var(--surface);box-shadow:0 0 0 1px var(--hair)}
+table{width:100%;border-collapse:collapse;min-width:640px;font-size:15px;line-height:1.4}
+th,td{text-align:left;vertical-align:top;padding:16px 18px;border-bottom:1px solid var(--hair)}
+thead th{font-family:var(--display);font-size:17px;font-weight:600;letter-spacing:-.02em;color:var(--ink);background:transparent}
+tbody th{font-weight:500;color:var(--ink-3);font-size:13px;width:18%;padding-top:18px}
+tbody tr:last-child th,tbody tr:last-child td{border-bottom:0}
+td{color:var(--ink-2)}
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.num-col{font-variant-numeric:tabular-nums}
+
+/* ---------- notes / footer ---------- */
+.notes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+@media (max-width:760px){.notes{grid-template-columns:minmax(0,1fr)}}
+.note{padding:24px 26px;border-radius:22px;background:var(--surface);box-shadow:0 0 0 1px var(--hair)}
+.note h3{margin:0 0 6px;font-size:17px;font-weight:600;letter-spacing:-.02em}
+.note p{margin:0;color:var(--ink-2);font-size:15px;line-height:1.5}
+.status{display:inline-flex;align-items:center;gap:8px;margin-bottom:10px;font-size:12px;font-weight:600;letter-spacing:.02em;color:var(--accent-ink)}
+.status i{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px rgba(254,78,9,.15)}
+.status.ok{color:#2F7D4A}.status.ok i{background:#34A853;box-shadow:0 0 0 4px rgba(52,168,83,.15)}
+footer{max-width:1024px;margin:clamp(72px,10vw,110px) auto 0;padding:20px 16px calc(28px + env(safe-area-inset-bottom,0px));border-top:1px solid var(--hair);display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;font-size:12px;color:var(--ink-3)}
+footer .brand svg{height:12px}
+
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+@media (prefers-reduced-transparency:reduce){.nav{background:var(--bg);-webkit-backdrop-filter:none;backdrop-filter:none}}
+@media (prefers-contrast:more){.specs li,.note,.compare-wrap{box-shadow:0 0 0 1px var(--ink)}}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#concepts">Skip to the concepts</a>
+<nav class="nav" aria-label="Rumor Studio">
+  <div class="nav-in">
+    <a class="brand" href="#top" aria-label="Rumor Studio"><svg viewBox="0 0 126 24" aria-hidden="true" focusable="false"><path d="M 108.135 23.27 L 108.135 0.872 L 112.477 0.872 L 112.477 8.294 C 113.288 6.474 114.253 4.934 115.421 3.585 C 116.407 2.45 117.411 1.59 118.501 0.954 C 119.34 0.466 120.091 0.181 120.875 0.06 C 121.133 0.022 121.39 0 121.632 0 C 122.278 0 122.876 0.148 123.413 0.433 C 123.918 0.707 124.323 1.113 124.669 1.683 C 124.959 2.165 125.162 2.73 125.31 3.448 C 125.441 4.1 125.513 4.797 125.513 5.57 C 125.513 5.718 125.436 5.805 125.354 5.888 L 121.089 10.103 C 121.111 9.33 121.089 8.557 121.018 7.784 C 121.012 7.724 121.007 7.664 121.001 7.609 C 120.93 6.885 120.793 5.937 120.365 5.038 C 120.234 4.764 120.075 4.512 119.894 4.287 C 119.576 3.903 119.165 3.706 118.666 3.706 C 118.534 3.706 118.392 3.722 118.244 3.75 C 117.674 3.859 117.136 4.095 116.555 4.484 C 115.722 5.043 114.955 5.767 114.138 6.759 C 113.628 7.384 113.135 8.08 112.636 8.892 C 112.565 9.007 112.537 9.111 112.537 9.237 L 112.537 23.27 Z" fill="currentColor"/><path d="M 75.162 8.398 C 75.365 4.731 73.172 2.445 69.702 4.714 C 68.244 5.592 66.879 6.83 65.612 8.201 C 64.834 9.04 64.395 10.142 64.385 11.293 L 64.275 23.276 L 59.867 23.276 L 59.867 8.426 C 60.092 4.813 57.9 2.423 54.408 4.72 C 53.114 5.444 51.563 6.885 50.329 8.195 C 49.512 9.062 49.057 10.213 49.057 11.402 L 49.057 11.608 C 49.051 15.351 49.04 23.088 48.986 23.282 L 44.59 23.282 L 44.59 0.877 L 48.986 0.877 L 48.986 9.051 C 53.777 0.674 65.47 -6.205 64.28 9.067 C 66.901 5.027 70.508 0.022 75.436 0.022 C 76.604 0.022 77.47 0.598 78.16 1.42 C 79.109 2.555 79.586 4.007 79.586 5.487 L 79.586 23.282 L 75.162 23.282 Z" fill="currentColor"/><path d="M 25.227 24 C 22.728 24.027 20.93 22.377 20.453 19.938 C 20.321 19.346 20.261 18.688 20.261 17.937 L 20.261 0.866 L 24.668 0.866 L 24.668 16.215 C 24.674 17.531 24.833 18.682 25.578 19.62 C 26.878 21.193 29.048 20.76 30.731 19.773 C 32.672 18.649 34.267 16.374 35.489 13.601 C 35.544 13.48 35.588 13.376 35.583 13.25 C 35.577 8.892 35.583 0.866 35.583 0.866 L 39.974 0.866 L 39.974 23.271 L 35.621 23.271 L 35.621 15.24 C 33.812 19.526 30.041 23.824 25.227 24 Z" fill="currentColor"/><path d="M 91.931 0.186 C 93.932 -0.148 95.966 -0.005 97.879 0.641 C 102.116 2.006 104.55 6.145 104.835 10.525 C 105.493 17.739 101.458 24.016 93.85 24 C 86.723 23.939 83.05 18.781 82.985 12.033 C 82.946 6.359 86.076 1.085 91.931 0.186 Z M 84.607 13.244 C 86.054 16.1 89.283 18.287 92.457 19.351 C 94.913 20.135 97.32 20.535 99.923 19.74 C 103.026 18.786 104.49 15.81 104.013 12.778 C 103.783 11.386 103.163 10.109 102.111 8.864 C 99.386 5.712 94.836 3.744 90.752 3.722 C 88.17 3.667 85.429 4.846 84.426 7.143 C 83.56 8.985 83.62 11.386 84.607 13.244 Z" fill="currentColor"/><path d="M 0 0.872 L 0 23.282 L 4.396 23.282 L 4.396 10.07 C 4.396 9.944 4.435 9.846 4.495 9.725 C 5.701 7.275 7.74 4.292 10.103 3.766 C 12.91 3.224 12.992 8.371 12.948 10.114 L 17.213 5.899 C 17.295 5.816 17.372 5.729 17.372 5.581 C 17.372 4.808 17.301 4.112 17.169 3.459 C 16.742 1.086 15.13 -0.318 12.74 0.066 C 8.908 0.779 5.992 4.638 4.396 8.201 L 4.396 0.872 Z" fill="currentColor"/></svg><span class="bar" aria-hidden="true"></span><span class="studio">Studio</span></a>
+    <ul class="nav-links">
+      <li><a href="#flyer">Animated Flyer</a></li>
+      <li><a href="#cinematic">Cinematic</a></li>
+      <li><a href="#house">The House</a></li>
+      <li><a href="#compare">Compare</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main id="top">
+  <header class="hero">
+    <p class="eyebrow">Rumor Studio × David Dobrik</p>
+    <h1>David's Halloween.</h1>
+    <p class="sub">Three invites for Friday, October&nbsp;30. Each opens full screen on any phone or laptop.</p>
+    <div class="hero-ctas">
+      <a class="pill" href="#concepts">See the concepts</a>
+      <a class="link" href="#compare">Compare all three <span aria-hidden="true">›</span></a>
+    </div>
+    <div class="lineup">
+      <a class="phone side l" href="/flyer" aria-label="Open Animated Flyer"><img src="/assets/img/preview-animated-flyer.e00513264e.webp" alt="" width="390" height="844"></a>
+      <a class="phone" href="/house" aria-label="Open The House"><img src="/assets/img/preview-the-house.4ff5c9bcc3.webp" alt="" width="390" height="844"></a>
+      <a class="phone side r" href="/cinematic" aria-label="Open Cinematic"><img src="/assets/img/preview-cinematic.dff1e1bab7.webp" alt="" width="390" height="844"></a>
+    </div>
+    <div class="cap" aria-hidden="true"><span>Animated Flyer</span><span>The House</span><span>Cinematic</span></div>
+  </header>
+
+  <section id="concepts" aria-labelledby="concepts-h">
+    <div class="section-head">
+      <h2 id="concepts-h">Pick the invite.</h2>
+      <p>All three use the flyer's own artwork and lettering, and end with an RSVP that opens in place.</p>
+    </div>
+    <div class="tiles">
+      <article class="tile" id="flyer">
+        <div class="tile-copy">
+          <p class="num">Concept 1</p>
+          <h3>Animated Flyer<span class="tag">The flyer, alive.</span></h3>
+          <p>The artwork exactly as supplied. The title drips in, the water ripples, the palm sways and the ghost bobs on his float, with RSVP right underneath.</p>
+          <ul class="specs"><li>Opens instantly</li><li>Flyer-exact</li><li>Drag or tilt for depth</li></ul>
+          <div class="tile-ctas"><a class="pill" href="/flyer">Open</a><a class="link" href="/flyer">Explore <span aria-hidden="true">›</span></a></div>
+        </div>
+        <div class="shot"><a class="phone tilt" href="/flyer" aria-label="Open Animated Flyer"><img src="/assets/img/preview-animated-flyer.e00513264e.webp" alt="Animated Flyer on a phone: the flyer with RSVP below" width="390" height="844" loading="lazy"></a></div>
+      </article>
+
+      <article class="tile dark" id="cinematic">
+        <div class="tile-copy">
+          <p class="num">Concept 2</p>
+          <h3>Cinematic<span class="tag">From sunset to poolside.</span></h3>
+          <p>The camera pans down from the sunset as the ghost floats in and the title drips into place. Then it's yours to play with: tap him to make a toast, tap the water to make ripples.</p>
+          <ul class="specs"><li>Interactive</li><li>Share the flyer</li><li>Big ghost</li></ul>
+          <div class="tile-ctas"><a class="pill" href="/cinematic">Open</a><a class="link" href="/cinematic">Explore <span aria-hidden="true">›</span></a></div>
+        </div>
+        <div class="shot"><a class="phone tilt" href="/cinematic" aria-label="Open Cinematic"><img src="/assets/img/preview-cinematic.dff1e1bab7.webp" alt="Cinematic on a phone: the ghost on his float under the title and moon" width="390" height="844" loading="lazy"></a></div>
+      </article>
+
+      <article class="tile" id="house">
+        <div class="tile-copy">
+          <p class="num">Concept 3</p>
+          <h3>The House<span class="tag">Come over to David's.</span></h3>
+          <p>A drone glides down the lit lap pool at David's real house, built from the listing photos, and settles into a living poster. Tap the ghost, the pool, the fire pit, the pumpkins or the sky.</p>
+          <ul class="specs"><li>Real 3D camera</li><li>Most immersive</li><li>Share the flyer</li></ul>
+          <div class="tile-ctas"><a class="pill" href="/house">Open</a><a class="link" href="/house">Explore <span aria-hidden="true">›</span></a></div>
+        </div>
+        <div class="shot"><a class="phone tilt" href="/house" aria-label="Open The House"><img src="/assets/img/preview-the-house.4ff5c9bcc3.webp" alt="The House on a phone: the ghost in David's pool under a big moon" width="390" height="844" loading="lazy"></a></div>
+      </article>
+    </div>
+  </section>
+
+  <section id="compare" aria-labelledby="compare-h">
+    <div class="section-head">
+      <h2 id="compare-h">Compare.</h2>
+      <p>Same night, same RSVP. Different first impression.</p>
+    </div>
+    <div class="compare-wrap" role="region" aria-label="Comparison of the three concepts" tabindex="0">
+      <table>
+        <thead><tr><th scope="col"><span class="vh">Detail</span></th><th scope="col">Animated Flyer</th><th scope="col">Cinematic</th><th scope="col">The House</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Opens with</th><td>The flyer, title building in</td><td>A sunset that pans down to the water</td><td>A drone shot down David's pool</td></tr>
+          <tr><th scope="row">Ends on</th><td>The flyer and RSVP</td><td>A live scene, RSVP and a Flyer button</td><td>A living poster, RSVP and a Flyer button</td></tr>
+          <tr><th scope="row">Tap to play</th><td>Drag or tilt for depth</td><td>Ghost, water, sky</td><td>Ghost, pool, fire pit, pumpkins, house, sky</td></tr>
+          <tr><th scope="row">Page size</th><td class="num-col">0.9 MB</td><td class="num-col">1.0 MB</td><td class="num-col">1.1 MB</td></tr>
+          <tr><th scope="row">Best for</th><td>The fastest, safest launch</td><td>A short story with a payoff</td><td>The wow moment people share</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section aria-labelledby="launch-h">
+    <div class="section-head"><h2 id="launch-h">Before launch.</h2></div>
+    <div class="notes">
+      <div class="note"><p class="status"><i aria-hidden="true"></i>To do</p><h3>Connect the RSVP</h3><p>The form validates and confirms but doesn't send anywhere yet. It needs to connect to Rumor event 926326, the same way Hochstein's does.</p></div>
+      <div class="note"><p class="status ok"><i aria-hidden="true"></i>Done</p><h3>The address stays private</h3><p>No page shows the address. Guests learn the neighborhood after they RSVP and get the exact address by text.</p></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <a class="brand" href="https://studio.therumor.com" target="_blank" rel="noopener" aria-label="Rumor Studio"><svg viewBox="0 0 126 24" aria-hidden="true" focusable="false"><path d="M 108.135 23.27 L 108.135 0.872 L 112.477 0.872 L 112.477 8.294 C 113.288 6.474 114.253 4.934 115.421 3.585 C 116.407 2.45 117.411 1.59 118.501 0.954 C 119.34 0.466 120.091 0.181 120.875 0.06 C 121.133 0.022 121.39 0 121.632 0 C 122.278 0 122.876 0.148 123.413 0.433 C 123.918 0.707 124.323 1.113 124.669 1.683 C 124.959 2.165 125.162 2.73 125.31 3.448 C 125.441 4.1 125.513 4.797 125.513 5.57 C 125.513 5.718 125.436 5.805 125.354 5.888 L 121.089 10.103 C 121.111 9.33 121.089 8.557 121.018 7.784 C 121.012 7.724 121.007 7.664 121.001 7.609 C 120.93 6.885 120.793 5.937 120.365 5.038 C 120.234 4.764 120.075 4.512 119.894 4.287 C 119.576 3.903 119.165 3.706 118.666 3.706 C 118.534 3.706 118.392 3.722 118.244 3.75 C 117.674 3.859 117.136 4.095 116.555 4.484 C 115.722 5.043 114.955 5.767 114.138 6.759 C 113.628 7.384 113.135 8.08 112.636 8.892 C 112.565 9.007 112.537 9.111 112.537 9.237 L 112.537 23.27 Z" fill="currentColor"/><path d="M 75.162 8.398 C 75.365 4.731 73.172 2.445 69.702 4.714 C 68.244 5.592 66.879 6.83 65.612 8.201 C 64.834 9.04 64.395 10.142 64.385 11.293 L 64.275 23.276 L 59.867 23.276 L 59.867 8.426 C 60.092 4.813 57.9 2.423 54.408 4.72 C 53.114 5.444 51.563 6.885 50.329 8.195 C 49.512 9.062 49.057 10.213 49.057 11.402 L 49.057 11.608 C 49.051 15.351 49.04 23.088 48.986 23.282 L 44.59 23.282 L 44.59 0.877 L 48.986 0.877 L 48.986 9.051 C 53.777 0.674 65.47 -6.205 64.28 9.067 C 66.901 5.027 70.508 0.022 75.436 0.022 C 76.604 0.022 77.47 0.598 78.16 1.42 C 79.109 2.555 79.586 4.007 79.586 5.487 L 79.586 23.282 L 75.162 23.282 Z" fill="currentColor"/><path d="M 25.227 24 C 22.728 24.027 20.93 22.377 20.453 19.938 C 20.321 19.346 20.261 18.688 20.261 17.937 L 20.261 0.866 L 24.668 0.866 L 24.668 16.215 C 24.674 17.531 24.833 18.682 25.578 19.62 C 26.878 21.193 29.048 20.76 30.731 19.773 C 32.672 18.649 34.267 16.374 35.489 13.601 C 35.544 13.48 35.588 13.376 35.583 13.25 C 35.577 8.892 35.583 0.866 35.583 0.866 L 39.974 0.866 L 39.974 23.271 L 35.621 23.271 L 35.621 15.24 C 33.812 19.526 30.041 23.824 25.227 24 Z" fill="currentColor"/><path d="M 91.931 0.186 C 93.932 -0.148 95.966 -0.005 97.879 0.641 C 102.116 2.006 104.55 6.145 104.835 10.525 C 105.493 17.739 101.458 24.016 93.85 24 C 86.723 23.939 83.05 18.781 82.985 12.033 C 82.946 6.359 86.076 1.085 91.931 0.186 Z M 84.607 13.244 C 86.054 16.1 89.283 18.287 92.457 19.351 C 94.913 20.135 97.32 20.535 99.923 19.74 C 103.026 18.786 104.49 15.81 104.013 12.778 C 103.783 11.386 103.163 10.109 102.111 8.864 C 99.386 5.712 94.836 3.744 90.752 3.722 C 88.17 3.667 85.429 4.846 84.426 7.143 C 83.56 8.985 83.62 11.386 84.607 13.244 Z" fill="currentColor"/><path d="M 0 0.872 L 0 23.282 L 4.396 23.282 L 4.396 10.07 C 4.396 9.944 4.435 9.846 4.495 9.725 C 5.701 7.275 7.74 4.292 10.103 3.766 C 12.91 3.224 12.992 8.371 12.948 10.114 L 17.213 5.899 C 17.295 5.816 17.372 5.729 17.372 5.581 C 17.372 4.808 17.301 4.112 17.169 3.459 C 16.742 1.086 15.13 -0.318 12.74 0.066 C 8.908 0.779 5.992 4.638 4.396 8.201 L 4.396 0.872 Z" fill="currentColor"/></svg><span class="bar" aria-hidden="true"></span><span class="studio">Studio</span></a>
+  <span>© Rumor Studio. Concept previews for David Dobrik's team.</span>
+</footer>
+</body>
+</html>
