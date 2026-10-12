@@ -71,7 +71,7 @@ h1{font-family:var(--display);font-weight:700;font-size:clamp(44px,8.2vw,88px);l
 @media (hover:hover) and (pointer:fine){.pill:hover{filter:brightness(1.06)}}
 .pill:active,.link:active{transform:scale(.97)}
 
-/* the lineup: two phones, the House forward (iPhone family shot) */
+/* the lineup: two phones side by side, same height */
 .lineup{position:relative;display:flex;justify-content:center;align-items:flex-end;gap:clamp(10px,2.4vw,28px);margin:clamp(36px,6vw,64px) auto 0;max-width:980px;padding-inline:16px}
 .phone{position:relative;display:block;flex:0 1 auto;width:clamp(150px,24vw,250px);aspect-ratio:390/844;border-radius:clamp(26px,4vw,42px);padding:clamp(5px,.8vw,8px);
   background:linear-gradient(145deg,#2b2a26,#0b0b09 55%,#24231f);box-shadow:0 0 0 1px rgba(255,255,255,.06) inset,0 30px 60px -30px rgba(0,0,0,.55),0 12px 24px -16px rgba(0,0,0,.4);
@@ -85,10 +85,10 @@ h1{font-family:var(--display);font-weight:700;font-size:clamp(44px,8.2vw,88px);l
 @keyframes riseSide{from{transform:translateY(calc(clamp(18px,3vw,36px) + 40px)) scale(.9)}}
 @media (hover:hover) and (pointer:fine){.phone:hover{transform:translateY(-8px)}.phone.side:hover{transform:translateY(calc(clamp(18px,3vw,36px) - 8px)) scale(.9)}}
 .phone:focus-visible{outline:3px solid var(--accent);outline-offset:6px}
-@media (max-width:620px){.lineup{gap:8px}.phone{width:31vw}}
+@media (max-width:620px){.lineup{gap:12px}.phone{width:41vw}}
 .cap{display:flex;justify-content:center;gap:clamp(10px,2.4vw,28px);max-width:980px;margin:14px auto 0;padding-inline:16px;font-size:13px;color:var(--ink-3)}
 .cap span{width:clamp(150px,24vw,250px);text-align:center}
-@media (max-width:620px){.cap{gap:8px}.cap span{width:31vw;font-size:12px}}
+@media (max-width:620px){.cap{gap:12px}.cap span{width:41vw;font-size:12px}}
 
 /* ---------- concept tiles ---------- */
 section{max-width:1024px;margin:0 auto;padding:clamp(72px,10vw,120px) 16px 0}
@@ -170,10 +170,10 @@ footer .brand svg{height:12px}
       <a class="link" href="#compare">Compare both <span aria-hidden="true">›</span></a>
     </div>
     <div class="lineup">
-      <a class="phone" href="/house" aria-label="Open The House"><img src="/assets/img/preview-the-house.4ff5c9bcc3.webp" alt="" width="390" height="844"></a>
-      <a class="phone side r" href="/cinematic" aria-label="Open Cinematic"><img src="/assets/img/preview-cinematic.dff1e1bab7.webp" alt="" width="390" height="844"></a>
+      <a class="phone" href="/cinematic" aria-label="Open Cinematic"><img src="/assets/img/preview-cinematic.dff1e1bab7.webp" alt="" width="390" height="844"></a>
+      <a class="phone r" href="/house" aria-label="Open The House"><img src="/assets/img/preview-the-house.4ff5c9bcc3.webp" alt="" width="390" height="844"></a>
     </div>
-    <div class="cap" aria-hidden="true"><span>The House</span><span>Cinematic</span></div>
+    <div class="cap" aria-hidden="true"><span>Cinematic</span><span>The House</span></div>
   </header>
 
   <section id="concepts" aria-labelledby="concepts-h">
