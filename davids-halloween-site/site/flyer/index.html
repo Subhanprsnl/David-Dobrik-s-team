@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0f0e0a">
+<title>David's Halloween · Animated Flyer</title>
+<meta name="description" content="David's Halloween. Friday, October 30. Presented by fomo. RSVP to get on the list.">
+<meta name="rsvp-endpoint" content="__RSVP_ENDPOINT__">
+<link rel="canonical" href="__SITE_URL__/flyer">
+<link rel="icon" type="image/png" sizes="64x64" href="/assets/img/favicon-64.png">
+<link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="David's Halloween">
+<meta property="og:title" content="David's Halloween · Animated Flyer">
+<meta property="og:description" content="David's Halloween. Friday, October 30. Presented by fomo. RSVP to get on the list.">
+<meta property="og:url" content="__SITE_URL__/flyer">
+<meta property="og:image" content="__SITE_URL__/assets/img/og-flyer.jpg">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The David's Halloween flyer: a ghost in sunglasses on a pool float under the moon.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="__SITE_URL__/assets/img/og-flyer.jpg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600&family=Young+Serif&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0f0e0a; --orange:#fe4e09; --sky:#5fb2e8; --ghost:#86cde6; --sun:#fee05d; --bone:#efe6d2;
+  --water:#1d5e8e;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+  color-scheme:dark;
+}
+:root:not([data-theme="light"]){--ink:#0f0e0a}
+:root[data-theme="dark"]{--ink:#0f0e0a}
+*,*::before,*::after{box-sizing:inherit}
+html,body{height:100%;margin:0;background:var(--ink);overflow:hidden;overscroll-behavior:none}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{color:var(--bone);font-family:"Archivo",ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.grain{position:fixed;inset:-50%;pointer-events:none;z-index:5;opacity:.13;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 .95  0 0 0 0 .85  0 0 0 1.4 -.45'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  animation:grain 1s steps(6) infinite}
+@keyframes grain{0%{transform:translate(0,0)}20%{transform:translate(-3%,2%)}40%{transform:translate(2%,-3%)}60%{transform:translate(-2%,-1%)}80%{transform:translate(3%,3%)}100%{transform:translate(0,0)}}
+.vignette{position:fixed;inset:0;pointer-events:none;z-index:4;background:radial-gradient(120% 90% at 50% 45%,transparent 55%,rgba(0,0,0,.55) 100%)}
+
+/* RSVP button */
+.rsvp-btn{font-family:"Young Serif",Georgia,"Times New Roman",serif;font-size:clamp(20px,2.6vh,26px);letter-spacing:.06em;line-height:1;
+  color:var(--ink);background:var(--orange);border:0;border-radius:999px;padding:.78em 2.1em .72em;cursor:pointer;min-height:48px;
+  box-shadow:4px 4px 0 var(--sky);transition:transform .16s cubic-bezier(.23,1,.32,1),box-shadow .16s cubic-bezier(.23,1,.32,1);
+  position:relative;-webkit-user-select:none;user-select:none}
+.rsvp-btn::after{content:"";position:absolute;inset:-8px}
+@media (hover:hover){.rsvp-btn:hover{transform:translate(-1px,-1px);box-shadow:5px 5px 0 var(--sky)}}
+.rsvp-btn:active{transform:translate(2px,2px) scale(.97);box-shadow:1px 1px 0 var(--sky)}
+.rsvp-btn:focus-visible{outline:3px solid var(--sun);outline-offset:4px}
+
+/* Modal */
+dialog.rsvp{border:0;padding:0;background:transparent;color:var(--bone);max-width:min(440px,calc(100vw - 28px));width:100%;max-height:calc(100dvh - 28px - env(safe-area-inset-top,0px) - env(safe-area-inset-bottom,0px));overflow:visible}
+dialog.rsvp::backdrop{background:rgba(6,5,3,.72);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);opacity:0;transition:opacity .28s ease}
+dialog.rsvp[open].in::backdrop{opacity:1}
+.sheet{position:relative;background:var(--ink);border-radius:22px;padding:22px 22px 20px;border:2px solid var(--orange);
+  box-shadow:6px 6px 0 var(--sky);max-height:inherit;overflow:auto;
+  transform:translateY(10px) scale(.96);opacity:0;transition:transform .2s cubic-bezier(.23,1,.32,1),opacity .18s ease-out}
+dialog.rsvp.in .sheet{transition:transform .38s cubic-bezier(.23,1,.32,1),opacity .26s ease-out}
+dialog.rsvp.in .sheet{transform:none;opacity:1}
+.sheet::before{content:"";position:absolute;inset:0;border-radius:20px;pointer-events:none;opacity:.12;mix-blend-mode:screen;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='1.1' numOctaves='1'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 .9  0 0 0 0 .75  0 0 0 2 -1.2'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
+.sheet-title{display:block;width:72%;max-width:260px;margin:2px auto 10px;height:auto}
+.sheet h2{text-wrap:balance;font-family:"Young Serif",Georgia,serif;font-weight:400;font-size:22px;line-height:1.2;margin:0 0 6px;text-align:center;color:var(--sun)}
+.sheet p.lede{text-wrap:pretty;margin:0 auto 16px;text-align:center;font-size:15px;line-height:1.5;color:#cfc6b3;max-width:34ch}
+.close{position:absolute;top:10px;right:10px;width:40px;height:40px;border-radius:50%;border:0;background:transparent;color:var(--bone);cursor:pointer;display:grid;place-items:center;z-index:2}
+@media (hover:hover) and (pointer:fine){.close:hover{background:rgba(255,255,255,.07)}}
+.close:focus-visible{outline:2px solid var(--sun);outline-offset:1px}
+.field{display:block;margin:0 0 12px}
+.field span{display:block;font-size:13px;font-weight:600;color:var(--ghost);margin:0 0 6px;letter-spacing:.01em}
+.field span em{font-style:normal;font-weight:400;color:#8f887a}
+.field input{width:100%;font:inherit;font-size:16px;color:var(--bone);background:#17150f;border:1.5px solid #3a362c;border-radius:12px;padding:12px 14px;outline:none;transition:border-color .15s ease,background .15s ease}
+.field input::placeholder{color:#6f695d}
+.field input:focus{border-color:var(--sun);background:#1b1912}
+.field[data-invalid] input{border-color:var(--orange)}
+.err{display:none;margin:6px 0 0;font-size:13px;color:#ff8a5c}
+.field[data-invalid] .err{display:block}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media (max-width:360px){.row2{grid-template-columns:1fr}}
+.submit{width:100%;margin-top:6px}
+.fine{font-size:12px;line-height:1.45;color:#8f887a;text-align:center;margin:12px 0 0}
+.done{text-align:center;padding:6px 0 4px}
+.done img{width:62%;max-width:220px;height:auto;display:block;margin:0 auto 10px;animation:bob 3.2s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-6px) rotate(-1deg)}}
+.done h2{font-size:26px}
+@media (prefers-reduced-motion:reduce){.grain{animation:none}.done img{animation:none}.sheet{transition:opacity .2s ease}}
+
+/* stacked card layout CTA (positioned from JS) */
+.cta{position:fixed;left:0;right:0;top:var(--cta-top,auto);display:flex;justify-content:center;z-index:3;opacity:0;transform:translateY(8px);filter:blur(4px);
+  transition:opacity .6s ease-out,transform .6s cubic-bezier(.23,1,.32,1),filter .6s ease-out;pointer-events:none}
+.cta.show{opacity:1;transform:none;filter:none;pointer-events:auto}
+canvas#scene{position:fixed;inset:0;width:100%;height:100%;display:block;touch-action:none}
+.replay{position:fixed;top:calc(env(safe-area-inset-top,0px) + 12px);right:12px;z-index:3;width:44px;height:44px;border-radius:50%;border:1.5px solid rgba(239,230,210,.22);background:rgba(15,14,10,.45);color:var(--bone);display:grid;place-items:center;cursor:pointer;opacity:0;pointer-events:none;transition:opacity .5s ease-out,transform .16s cubic-bezier(.23,1,.32,1)}
+.replay.show{opacity:.7;pointer-events:auto}
+@media (hover:hover){.replay:hover{opacity:1}}
+.replay:active{transform:scale(.94)}
+.replay:focus-visible{outline:2px solid var(--sun);outline-offset:2px}
+.skip{position:fixed;bottom:calc(env(safe-area-inset-bottom,0px) + 14px);right:14px;z-index:3;font:600 13px/1 "Archivo",system-ui,sans-serif;color:rgba(239,230,210,.62);background:rgba(15,14,10,.35);border:0;border-radius:999px;padding:12px 16px;cursor:pointer;transition:opacity .4s ease-out,transform .16s cubic-bezier(.23,1,.32,1)}
+.skip.hide{opacity:0;pointer-events:none}
+.skip:focus-visible{outline:2px solid var(--sun)}
+@media (prefers-reduced-motion:reduce){.cta{transition:opacity .2s;transform:none;filter:none}}
+
+
+/* touch polish: no callouts or text selection on controls, instant taps, contained modal scroll */
+html{-webkit-text-size-adjust:100%}
+button{touch-action:manipulation;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+.sheet{overscroll-behavior:contain}
+.close{transition:transform .16s cubic-bezier(.23,1,.32,1),background-color .15s ease}
+.close:active,.skip:active{transform:scale(.96)}
+.field input{-webkit-appearance:none;appearance:none}
+
+/* back to the concepts hub (top-left, mirrors Flyer/replay on the right) */
+.back{position:fixed;top:calc(env(safe-area-inset-top,0px) + 12px);left:12px;z-index:6;height:44px;display:inline-flex;align-items:center;gap:4px;padding:0 15px 0 10px;border-radius:999px;
+  border:1.5px solid rgba(239,230,210,.3);background:rgba(15,14,10,.5);color:var(--bone);text-decoration:none;font-family:"Archivo",system-ui,sans-serif;font-weight:600;font-size:15px;letter-spacing:.02em;
+  -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;touch-action:manipulation;
+  animation:backIn .6s cubic-bezier(.23,1,.32,1) .4s both;transition:transform .16s cubic-bezier(.23,1,.32,1),border-color .15s ease,background-color .15s ease}
+@keyframes backIn{from{opacity:0;transform:translateX(-6px)}}
+@media (hover:hover) and (pointer:fine){.back:hover{border-color:var(--sun);background:rgba(15,14,10,.75)}}
+.back:active{transform:scale(.96)}
+.back:focus-visible{outline:2px solid var(--sun);outline-offset:2px}
+@media (prefers-reduced-motion:reduce){.back{animation:none}}
+
+.send-err{margin:10px 0 0;font-size:13px;line-height:1.4;color:#ff8a5c;text-align:center}
+.send-err:empty{display:none}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+</style>
+</head>
+
+<body data-concept="flyer">
+<h1 class="sr-only">David's Halloween. Friday, October 30. Presented by fomo.</h1>
+<a class="back" href="/" aria-label="Back to all three concepts"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>Concepts</a>
+<canvas id="scene" role="img" aria-label="Flyer: a ghost in sunglasses lounges on an orange pool float holding a martini, under a yellow moon with palm trees. David's Halloween, 10.30, presented by fomo. Cazcanes Tequila."></canvas>
+<div class="cta" id="cta"><button class="rsvp-btn" type="button" data-open-rsvp>RSVP</button></div>
+<div class="vignette"></div><div class="grain"></div>
+<dialog class="rsvp" id="rsvp" aria-labelledby="rsvp-h">
+  <div class="sheet">
+    <button class="close" type="button" aria-label="Close" data-close>
+      <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M3 3l12 12M15 3L3 15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+    <div data-step="form">
+      <img class="sheet-title" src="/assets/img/title-lockup.9ab50885e2.webp" alt="">
+      <h2 id="rsvp-h">RSVP for Friday, October 30</h2>
+      <p class="lede">Doors at 6 PM. The location unlocks when you RSVP, and we'll text you the exact address.</p>
+      <form novalidate>
+        <label class="field" data-f="name"><span>Full name</span><input name="name" autocomplete="name" placeholder="Casper Ghost" required><p class="err">Add your name so we can find you at the door.</p></label>
+        <div class="row2">
+          <label class="field" data-f="phone"><span>Phone</span><input name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="(310) 555-0130" required><p class="err">Enter a phone number we can text.</p></label>
+          <label class="field" data-f="ig"><span>Instagram</span><input name="ig" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" placeholder="@handle" required><p class="err">Add your Instagram handle, like @casper.</p></label>
+        </div>
+        <label class="field" data-f="email"><span>Email</span><input name="email" type="email" inputmode="email" autocomplete="email" placeholder="you@email.com" required><p class="err">Enter an email like you@email.com.</p></label>
+        <label class="hp" aria-hidden="true">Leave this empty<input name="website" tabindex="-1" autocomplete="off"></label>
+        <button class="rsvp-btn submit" type="submit">Send RSVP</button>
+        <p class="fine">Costumes encouraged. Spots are limited and confirmed by text.</p>
+      </form>
+    </div>
+    <div data-step="done" class="done" hidden>
+      <img src="/assets/img/ghost-confirmed.0f4d6038d6.webp" alt="">
+      <h2 tabindex="-1">You're on the list</h2>
+      <p class="lede" data-done-copy>We'll text the address before Friday. Bring your best costume.</p>
+      <button class="rsvp-btn" type="button" data-close>Done</button>
+    </div>
+  </div>
+</dialog>
+
+<script src="/assets/js/rsvp.js"></script>
+<script>
+(function(){
+  const dlg=document.getElementById('rsvp'); if(!dlg) return;
+  const form=dlg.querySelector('form'), stepForm=dlg.querySelector('[data-step="form"]'), stepDone=dlg.querySelector('[data-step="done"]');
+  let opener=null;
+  function open(e){opener=e&&e.currentTarget||document.activeElement; stepForm.hidden=false; stepDone.hidden=true;
+    dlg.showModal(); requestAnimationFrame(()=>dlg.classList.add('in'));
+    setTimeout(()=>{const f=form.querySelector('input'); if(f && matchMedia('(hover:hover)').matches) f.focus();},60);}
+  function close(){dlg.classList.remove('in'); const rm=matchMedia('(prefers-reduced-motion:reduce)').matches;
+    setTimeout(()=>{dlg.close(); if(opener&&opener.focus) opener.focus();}, rm?120:260);}
+  document.querySelectorAll('[data-open-rsvp]').forEach(b=>b.addEventListener('click',open));
+  dlg.querySelectorAll('[data-close]').forEach(b=>b.addEventListener('click',close));
+  dlg.addEventListener('cancel',e=>{e.preventDefault();close();});
+  dlg.addEventListener('click',e=>{if(e.target===dlg) close();});
+  const rules={name:v=>v.trim().length>1, phone:v=>v.replace(/\D/g,'').length>=10, email:v=>/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim()), ig:v=>/^@?[A-Za-z0-9._]{1,30}$/.test(v.trim())};
+  form.querySelectorAll('input').forEach(i=>i.addEventListener('input',()=>{const f=i.closest('.field'); if(f.hasAttribute('data-invalid') && (!rules[i.name]||rules[i.name](i.value))) f.removeAttribute('data-invalid');}));
+  form.addEventListener('submit',async e=>{e.preventDefault(); let first=null;
+    for(const k in rules){const i=form.elements[k], f=i.closest('.field'); if(!rules[k](i.value)){f.setAttribute('data-invalid',''); first=first||i;} else f.removeAttribute('data-invalid');}
+    if(first){first.focus();return;}
+    if(!(await window.sendRSVP(form))) return; // posts to /api/rsvp when an endpoint is configured
+    const name=form.elements.name.value.trim().split(/\s+/)[0];
+    stepDone.querySelector('h2').textContent=`You're on the list, ${name}`;
+    stepDone.querySelector('[data-done-copy]').textContent=`The party is in Sherman Oaks. We'll text ${form.elements.phone.value.trim()} the exact address before Friday. Bring your best costume.`;
+    stepForm.hidden=true; stepDone.hidden=false; stepDone.querySelector('h2').focus();
+    window.dispatchEvent(new CustomEvent('rsvp:sent'));
+  });
+  window.__openRSVP=open;
+})();
+
+/* ---------- shared: the flyer card (exact artwork, gently alive) ---------- */
+const FX={clamp:(x,a,b)=>Math.max(a,Math.min(b,x)),lerp:(a,b,t)=>a+(b-a)*t,
+  eOut:x=>{x=Math.max(0,Math.min(1,x));return 1-Math.pow(1-x,3)},
+  eOutQ:x=>{x=Math.max(0,Math.min(1,x));return 1-Math.pow(1-x,5)},
+  eIO:x=>{x=Math.max(0,Math.min(1,x));return x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2}};
+function FlyerCard(imgs){
+  const {clamp,eOut,eOutQ}=FX;
+  const tips=[[203,531],[649,453],[930,537],[706,471],[1020,498],[351,449]];
+  const drips=[]; let nextDrip=0, last=null;
+  const P={x:0,y:0,tx:0,ty:0};
+  // HALLOWEEN reveals as uneven paint drips: per-column delays
+  const COLS=38, colDelay=[]; {let s=5; for(let i=0;i<COLS;i++){s=(s*16807)%2147483647; colDelay.push((s/2147483647)*0.28+Math.sin(i*0.9)*0.05);}}
+  const glints=[[34,34,1],[86,58,.8],[20,96,.7],[118,22,.6],[60,110,.5]];
+  const sparks=[]; {let s=9; for(let i=0;i<14;i++){s=(s*16807)%2147483647; const a=s/2147483647; s=(s*16807)%2147483647; const b=s/2147483647; sparks.push([742+a*130,822+b*170,a*6.28]);}}
+  function star(ctx,x,y,r,a){ctx.globalAlpha=a; ctx.beginPath(); ctx.moveTo(x,y-r); ctx.lineTo(x+r*0.18,y-r*0.18); ctx.lineTo(x+r,y); ctx.lineTo(x+r*0.18,y+r*0.18); ctx.lineTo(x,y+r); ctx.lineTo(x-r*0.18,y+r*0.18); ctx.lineTo(x-r,y); ctx.lineTo(x-r*0.18,y-r*0.18); ctx.closePath(); ctx.fill();}
+  return {
+    pointer(x,y){P.tx=clamp(x,-1,1); P.ty=clamp(y,-1,1);},
+    // R={x,y,s}; t=seconds; o={alpha,titleAt,rm,motion(0..1)}
+    draw(ctx,R,t,o){
+      const dt=last===null?0.016:Math.min(0.05,t-last); last=t;
+      P.x+=(P.tx-P.x)*Math.min(1,dt*4); P.y+=(P.ty-P.y)*Math.min(1,dt*4);
+      const rm=o.rm, tt=rm?0:t, m=o.motion==null?1:o.motion, A=o.alpha==null?1:o.alpha;
+      if(A<=0) return;
+      ctx.save(); ctx.translate(R.x,R.y); ctx.scale(R.s,R.s);
+      ctx.beginPath(); ctx.rect(0,0,1080,1350); ctx.clip();
+      ctx.globalAlpha=A; const pl=imgs.plate;
+      ctx.drawImage(pl,0,0,1080,805,0,0,1080,805);
+      ctx.drawImage(pl,0,1265,1080,85,0,1265,1080,85);
+      for(let y=805;y<1265;y+=2){const d=(y-805)/460, amp=rm?0:(0.6+d*2.4)*m;
+        const off=Math.sin(y*0.047+tt*1.5)*amp+Math.sin(y*0.13-tt*2.2)*amp*0.45; ctx.drawImage(pl,0,y,1080,2,off,y,1080,2);}
+      // moon glow
+      const g=ctx.createRadialGradient(808,722,90,808,722,240); g.addColorStop(0,`rgba(254,224,93,${0.1+0.04*Math.sin(tt*0.9)})`); g.addColorStop(1,'rgba(254,224,93,0)');
+      ctx.globalCompositeOperation='lighter'; ctx.fillStyle=g; ctx.fillRect(560,480,500,500);
+      // reflection sparkles
+      ctx.fillStyle='#fff6c8';
+      for(const s of sparks){const a=Math.max(0,Math.sin(tt*2.3+s[2]*3))**6; if(a>0.02){star(ctx,s[0],s[1],6+a*5,a*0.9*A);}}
+      // disco glints
+      for(const gl of glints){const a=Math.max(0,Math.sin(tt*1.7+gl[0]))**8*gl[2]; if(a>0.02) star(ctx,gl[0],gl[1],9+a*9,a*A);}
+      ctx.globalCompositeOperation='source-over'; ctx.globalAlpha=A;
+      const px=P.x, py=P.y;
+      // clouds
+      ctx.drawImage(imgs.c0,104+Math.sin(tt*0.25)*7*m+px*3,650+py*2);
+      ctx.drawImage(imgs.c1,922+Math.sin(tt*0.3+1)*5*m+px*3,694+py*2);
+      // palm sway
+      ctx.save(); ctx.translate(1064+px*4,798+py*2); ctx.rotate((Math.sin(tt*0.85)*0.9+Math.sin(tt*2.1)*0.22)*m*Math.PI/180); ctx.drawImage(imgs.palm,895-1064,470-798); ctx.restore();
+      // ghost
+      ctx.save(); ctx.translate(500+px*3.5,1010+Math.sin(tt*1.15)*1.6*m+py*2.5); ctx.rotate(Math.sin(tt*1.15+0.7)*0.0035*m); ctx.drawImage(imgs.ghost,80-500,780-1010); ctx.restore();
+      // title build
+      const tl=rm?99:(o.titleAt==null?99:t-o.titleAt);
+      const tx=px*6, ty=py*4;
+      if(tl>0){
+        const d1=eOutQ(tl/0.75); ctx.globalAlpha=A*d1; ctx.drawImage(imgs.davids,100+tx,25-(1-d1)*22+ty);
+        const Hh=imgs.hall, HW=Hh.width, HH=Hh.height, cw=HW/COLS; ctx.globalAlpha=A;
+        // drip reveal as one clipped draw (no seams between columns)
+        ctx.save(); ctx.beginPath(); let full=true, any=false;
+        for(let i=0;i<COLS;i++){const p=clamp((tl-0.42-colDelay[i])/1.05,0,1); if(p<1) full=false; if(p<=0) continue; any=true; const e=1-Math.pow(1-p,2.4);
+          ctx.rect(98+i*cw+tx-0.5,152+ty-2,cw+1,HH*e+2);}
+        if(any){ if(!full) ctx.clip(); ctx.drawImage(Hh,98+tx,152+ty); } ctx.restore();
+        const d3=eOut((tl-1.55)/0.6); ctx.globalAlpha=A*d3; ctx.drawImage(imgs.date,240+tx,487+(1-d3)*8+ty);
+        ctx.globalAlpha=A;
+        // drips once the title has settled
+        if(!rm && tl>2.6 && m>0){ if(t>nextDrip){const p=tips[(Math.random()*tips.length)|0]; drips.push({x:p[0],y:p[1]-6,v:0,life:0,len:0}); nextDrip=t+2.2+Math.random()*3;}
+          ctx.fillStyle='#fe4e09';
+          for(let i=drips.length-1;i>=0;i--){const d=drips[i]; d.life+=dt; if(d.life<0.9) d.len=eOut(d.life/0.9)*9; else {d.v+=30*dt; d.y+=d.v;}
+            const a=clamp(1-(d.y-500)/120,0,1); if(a<=0||d.y>700){drips.splice(i,1);continue;}
+            ctx.globalAlpha=a*A; ctx.beginPath(); ctx.ellipse(d.x+tx,d.y+d.len+ty,3.2,3.2+d.len*0.35,0,0,Math.PI*2); ctx.fill(); if(d.life<0.9) ctx.fillRect(d.x-2.2+tx,d.y-4+ty,4.4,d.len+4);} }
+      }
+      ctx.restore(); ctx.globalAlpha=1;
+    }
+  };
+}
+/* layout: flyer card + RSVP stacked and centred, like a printed invite */
+function cardLayout(W,H,ctaH){
+  const cs=getComputedStyle(document.documentElement); const st=(parseFloat(cs.paddingTop)||0)+(W<760?52:0), sb=parseFloat(cs.paddingBottom)||0; // room for the back button on phones
+  const gap=Math.max(16,H*0.026), pad=Math.max(10,H*0.02);
+  const avail=H-st-sb-pad*2-ctaH-gap; const s=Math.min(W/1080,avail/1350);
+  const gh=1350*s+gap+ctaH; const top=st+pad+Math.max(0,(H-st-sb-pad*2-gh)/2);
+  return {x:(W-1080*s)/2,y:top,s,ctaTop:top+1350*s+gap};
+}
+function bindPointer(card){
+  let tdn=null; addEventListener('pointerdown',e=>{if(e.pointerType!=='mouse') tdn=[e.clientX,e.clientY];},{passive:true}); addEventListener('pointerup',e=>{if(e.pointerType!=='mouse'){tdn=null; card.pointer(0,0);}}); addEventListener('pointercancel',()=>{tdn=null; card.pointer(0,0);}); addEventListener('pointermove',e=>{if(e.pointerType==='mouse') card.pointer((e.clientX/innerWidth)*2-1,(e.clientY/innerHeight)*2-1); else if(tdn) card.pointer((e.clientX-tdn[0])/(innerWidth*0.35),(e.clientY-tdn[1])/(innerHeight*0.35));},{passive:true});
+  addEventListener('pointerleave',()=>card.pointer(0,0));
+  addEventListener('deviceorientation',e=>{if(e.gamma==null)return; card.pointer(e.gamma/25,(e.beta-45)/25);},{passive:true});
+}
+
+(()=>{
+const A={plate:"/assets/img/flyer-plate.b8d9ea4fb2.jpg",ghost:"/assets/img/ghost-confirmed.0f4d6038d6.webp",palm:"/assets/img/palm.4a28e94d5e.webp",davids:"/assets/img/title-davids.9ff9299410.webp",hall:"/assets/img/title-halloween.f077893f9e.webp",date:"/assets/img/title-date.9373945921.webp",c0:"/assets/img/cloud-a.404e43d8cd.webp",c1:"/assets/img/cloud-b.ef0056e5d4.webp"};
+const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const cv=document.getElementById('scene'), ctx=cv.getContext('2d'), cta=document.getElementById('cta');
+let W,H,dpr,R; const imgs={};
+function fit(){dpr=Math.min(devicePixelRatio||1,2); W=innerWidth; H=innerHeight; cv.width=Math.round(W*dpr); cv.height=Math.round(H*dpr);
+  R=cardLayout(W,H,cta.offsetHeight); cta.style.setProperty('--cta-top',R.ctaTop+'px');}
+addEventListener('resize',fit);
+const load=k=>new Promise(r=>{const i=new Image(); i.onload=()=>i.decode?i.decode().then(()=>{imgs[k]=i;r()},()=>{imgs[k]=i;r()}):(imgs[k]=i,r()); i.src=A[k];});
+let card,t0=null;
+function frame(now){ if(t0===null)t0=now; const t=(now-t0)/1000;
+  ctx.setTransform(dpr,0,0,dpr,0,0); ctx.fillStyle='#0f0e0a'; ctx.fillRect(0,0,W,H);
+  const a=RM?1:FX.eOut(t/0.9), z=RM?1:FX.lerp(1.035,1,FX.eOutQ(t/1.6));
+  const Rz={s:R.s*z,x:R.x+1080*R.s*(1-z)/2,y:R.y+1350*R.s*(1-z)/2};
+  card.draw(ctx,Rz,t,{alpha:a,titleAt:0.35,rm:RM});
+  if((t>2.4||RM)&&!cta.classList.contains('show')) cta.classList.add('show');
+  if(!RM) requestAnimationFrame(frame);
+}
+fit();
+Promise.all(Object.keys(A).map(load)).then(()=>{card=FlyerCard(imgs); if(!RM) bindPointer(card); requestAnimationFrame(frame);});
+if(RM) addEventListener('resize',()=>card&&requestAnimationFrame(frame));
+})();
+</script>
+</body>
+</html>

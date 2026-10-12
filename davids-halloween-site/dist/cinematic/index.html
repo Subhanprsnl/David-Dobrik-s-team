@@ -1,0 +1,544 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0f0e0a">
+<title>David's Halloween · Cinematic</title>
+<meta name="description" content="David's Halloween. Friday, October 30. Presented by fomo. RSVP to get on the list.">
+<meta name="rsvp-endpoint" content="">
+<link rel="canonical" href="http://localhost:3000/cinematic">
+<link rel="icon" type="image/png" sizes="64x64" href="/assets/img/favicon-64.png">
+<link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="David's Halloween">
+<meta property="og:title" content="David's Halloween · Cinematic">
+<meta property="og:description" content="David's Halloween. Friday, October 30. Presented by fomo. RSVP to get on the list.">
+<meta property="og:url" content="http://localhost:3000/cinematic">
+<meta property="og:image" content="http://localhost:3000/assets/img/og-flyer.jpg">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The David's Halloween flyer: a ghost in sunglasses on a pool float under the moon.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://localhost:3000/assets/img/og-flyer.jpg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,400..800&family=Young+Serif&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0f0e0a; --orange:#fe4e09; --sky:#5fb2e8; --ghost:#86cde6; --sun:#fee05d; --bone:#efe6d2;
+  --water:#1d5e8e;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+  color-scheme:dark;
+}
+:root:not([data-theme="light"]){--ink:#0f0e0a}
+:root[data-theme="dark"]{--ink:#0f0e0a}
+*,*::before,*::after{box-sizing:inherit}
+html,body{height:100%;margin:0;background:var(--ink);overflow:hidden;overscroll-behavior:none}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{color:var(--bone);font-family:"Archivo",ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.grain{position:fixed;inset:-50%;pointer-events:none;z-index:5;opacity:.13;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 .95  0 0 0 0 .85  0 0 0 1.4 -.45'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  animation:grain 1s steps(6) infinite}
+@keyframes grain{0%{transform:translate(0,0)}20%{transform:translate(-3%,2%)}40%{transform:translate(2%,-3%)}60%{transform:translate(-2%,-1%)}80%{transform:translate(3%,3%)}100%{transform:translate(0,0)}}
+.vignette{position:fixed;inset:0;pointer-events:none;z-index:4;background:radial-gradient(120% 90% at 50% 45%,transparent 55%,rgba(0,0,0,.55) 100%)}
+
+/* RSVP button */
+.rsvp-btn{font-family:"Young Serif",Georgia,"Times New Roman",serif;font-size:clamp(20px,2.6vh,26px);letter-spacing:.06em;line-height:1;
+  color:var(--ink);background:var(--orange);border:0;border-radius:999px;padding:.78em 2.1em .72em;cursor:pointer;
+  box-shadow:4px 4px 0 var(--sky);transition:transform .18s cubic-bezier(.2,.8,.2,1),box-shadow .18s cubic-bezier(.2,.8,.2,1);
+  position:relative}
+.rsvp-btn:hover{transform:translate(-1px,-1px);box-shadow:5px 5px 0 var(--sky)}
+.rsvp-btn:active{transform:translate(3px,3px);box-shadow:1px 1px 0 var(--sky)}
+.rsvp-btn:focus-visible{outline:3px solid var(--sun);outline-offset:4px}
+@media (hover:none){.rsvp-btn:hover{transform:none;box-shadow:4px 4px 0 var(--sky)}}
+
+/* Modal */
+dialog.rsvp{border:0;padding:0;background:transparent;color:var(--bone);max-width:min(440px,calc(100vw - 28px));width:100%;max-height:calc(100dvh - 28px - env(safe-area-inset-top,0px) - env(safe-area-inset-bottom,0px));overflow:visible}
+dialog.rsvp::backdrop{background:rgba(6,5,3,.72);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);opacity:0;transition:opacity .28s ease}
+dialog.rsvp[open].in::backdrop{opacity:1}
+.sheet{position:relative;background:var(--ink);border-radius:22px;padding:22px 22px 20px;border:2px solid var(--orange);
+  box-shadow:6px 6px 0 var(--sky);max-height:inherit;overflow:auto;
+  transform:translateY(18px) scale(.97);opacity:0;transition:transform .34s cubic-bezier(.2,.9,.25,1),opacity .24s ease}
+dialog.rsvp.in .sheet{transform:none;opacity:1}
+.sheet::before{content:"";position:absolute;inset:0;border-radius:20px;pointer-events:none;opacity:.12;mix-blend-mode:screen;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='1.1' numOctaves='1'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 .9  0 0 0 0 .75  0 0 0 2 -1.2'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
+.sheet-title{display:block;width:72%;max-width:260px;margin:2px auto 10px;height:auto}
+.sheet h2{font-family:"Young Serif",Georgia,serif;font-weight:400;font-size:22px;line-height:1.2;margin:0 0 6px;text-align:center;color:var(--sun)}
+.sheet p.lede{margin:0 auto 16px;text-align:center;font-size:15px;line-height:1.5;color:#cfc6b3;max-width:34ch}
+.close{position:absolute;top:10px;right:10px;width:40px;height:40px;border-radius:50%;border:0;background:transparent;color:var(--bone);cursor:pointer;display:grid;place-items:center;z-index:2}
+@media (hover:hover) and (pointer:fine){.close:hover{background:rgba(255,255,255,.07)}}
+.close:focus-visible{outline:2px solid var(--sun);outline-offset:1px}
+.field{display:block;margin:0 0 12px}
+.field span{display:block;font-size:13px;font-weight:600;color:var(--ghost);margin:0 0 6px;letter-spacing:.01em}
+.field span em{font-style:normal;font-weight:400;color:#8f887a}
+.field input{width:100%;font:inherit;font-size:16px;color:var(--bone);background:#17150f;border:1.5px solid #3a362c;border-radius:12px;padding:12px 14px;outline:none;transition:border-color .15s ease,background .15s ease}
+.field input::placeholder{color:#6f695d}
+.field input:focus{border-color:var(--sun);background:#1b1912}
+.field[data-invalid] input{border-color:var(--orange)}
+.err{display:none;margin:6px 0 0;font-size:13px;color:#ff8a5c}
+.field[data-invalid] .err{display:block}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media (max-width:360px){.row2{grid-template-columns:1fr}}
+.submit{width:100%;margin-top:6px}
+.fine{font-size:12px;line-height:1.45;color:#8f887a;text-align:center;margin:12px 0 0}
+.done{text-align:center;padding:6px 0 4px}
+.done img{width:62%;max-width:220px;height:auto;display:block;margin:0 auto 10px;animation:bob 3.2s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-6px) rotate(-1deg)}}
+.done h2{font-size:26px}
+@media (prefers-reduced-motion:reduce){.grain{animation:none}.done img{animation:none}.sheet{transition:opacity .2s ease}}
+
+canvas#scene{position:fixed;inset:0;width:100%;height:100%;display:block}
+.cta{position:fixed;left:0;right:0;bottom:calc(env(safe-area-inset-bottom,0px) + clamp(18px,4.2vh,40px));display:flex;flex-direction:column;align-items:center;gap:clamp(10px,1.8vh,16px);z-index:3;
+  opacity:0;transform:translateY(14px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.8,.2,1);pointer-events:none}
+.cta.show{opacity:1;transform:none;pointer-events:auto}
+.cta img{width:clamp(78px,11vh,108px);height:auto;opacity:.85}
+.replay{position:fixed;top:calc(env(safe-area-inset-top,0px) + 12px);right:12px;z-index:3;width:44px;height:44px;border-radius:50%;border:1.5px solid rgba(239,230,210,.25);background:rgba(15,14,10,.4);color:var(--bone);display:grid;place-items:center;cursor:pointer;opacity:0;pointer-events:none;transition:opacity .5s ease}
+.replay.show{opacity:.75;pointer-events:auto}@media (hover:hover) and (pointer:fine){.replay:hover{opacity:1}}
+.replay:focus-visible{outline:2px solid var(--sun);outline-offset:2px}
+.skip{position:fixed;bottom:calc(env(safe-area-inset-bottom,0px) + 16px);right:16px;z-index:3;font:600 13px/1 "Archivo",system-ui,sans-serif;color:rgba(239,230,210,.6);background:none;border:0;padding:10px;cursor:pointer;transition:opacity .4s}
+.skip.hide{opacity:0;pointer-events:none}
+.skip:focus-visible{outline:2px solid var(--sun)}
+
+/* touch polish: no callouts or text selection on controls, instant taps, contained modal scroll */
+html{-webkit-text-size-adjust:100%}
+button{touch-action:manipulation;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+.sheet{overscroll-behavior:contain}
+.close{transition:transform .16s cubic-bezier(.23,1,.32,1),background-color .15s ease}
+.close:active,.skip:active{transform:scale(.96)}
+.field input{-webkit-appearance:none;appearance:none}
+
+/* ===== cinematic v4: final screen ===== */
+.cta{gap:clamp(10px,1.6vh,14px)}
+.meta{margin:0;display:flex;flex-wrap:nowrap;justify-content:center;align-items:center;gap:.25em .7em;font-family:"Archivo",system-ui,sans-serif;font-weight:700;font-stretch:125%;font-size:clamp(10.5px,min(2.9vw,1.6vh),14px);letter-spacing:.13em;white-space:nowrap;text-transform:uppercase;color:var(--bone);text-shadow:0 1px 10px rgba(0,0,0,.75)}
+.meta i{font-style:normal;color:var(--orange);font-size:.8em;letter-spacing:0}
+.actions{display:flex;gap:12px;align-items:center;justify-content:center}
+.flyer-btn{font-family:"Archivo",system-ui,sans-serif;font-weight:600;font-stretch:112%;font-size:16px;letter-spacing:.02em;color:var(--bone);background:rgba(15,14,10,.55);border:1.5px solid rgba(239,230,210,.35);border-radius:999px;padding:0 20px 0 16px;min-height:48px;display:inline-flex;align-items:center;gap:8px;cursor:pointer;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);transition:transform .16s cubic-bezier(.23,1,.32,1),border-color .15s ease,background-color .15s ease}
+@media (hover:hover) and (pointer:fine){.flyer-btn:hover{border-color:var(--sun);background:rgba(15,14,10,.75)}}
+.flyer-btn:active{transform:scale(.96)}
+.flyer-btn:focus-visible{outline:3px solid var(--sun);outline-offset:3px}
+.cta .sponsor{width:clamp(70px,9vh,96px);height:auto;opacity:.75}
+.hint{position:fixed;left:50%;top:var(--hint-top,55%);z-index:3;margin:0;transform:translate(-50%,6px);font:600 13px/1.2 "Archivo",system-ui,sans-serif;letter-spacing:.02em;color:var(--bone);background:rgba(15,14,10,.6);border:1px solid rgba(239,230,210,.2);border-radius:999px;padding:9px 14px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .5s ease-out,transform .5s cubic-bezier(.23,1,.32,1);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.hint.show{opacity:1;transform:translate(-50%,0);animation:hintPulse 2.4s ease-in-out 1s infinite}
+@keyframes hintPulse{50%{border-color:rgba(254,224,93,.6)}}
+canvas#scene{touch-action:none;cursor:pointer}
+dialog.flyer{max-width:min(500px,calc(100vw - 24px))}
+.fsheet{padding:14px 14px 16px;text-align:center}
+.flyer-img{display:block;width:auto;max-width:100%;max-height:calc(100dvh - 190px - env(safe-area-inset-top,0px) - env(safe-area-inset-bottom,0px));height:auto;margin:0 auto;border-radius:12px;outline:1px solid rgba(255,255,255,.1);outline-offset:-1px;-webkit-touch-callout:default;-webkit-user-select:auto;user-select:auto}
+.factions{display:flex;gap:10px;justify-content:center;margin-top:14px}
+.factions .rsvp-btn{font-size:18px;padding:.7em 1.5em .66em}
+.fnote{font-size:13px;line-height:1.4;color:#a59e8e;margin:10px 0 0;text-wrap:pretty}
+.flyer .close{background:rgba(15,14,10,.6)}
+@media (prefers-reduced-motion:reduce){.hint.show{animation:none}}
+
+.flyer-top{position:fixed;top:calc(env(safe-area-inset-top,0px) + 12px);right:64px;z-index:3;height:44px;display:inline-flex;align-items:center;gap:7px;padding:0 16px 0 13px;border-radius:999px;border:1.5px solid rgba(239,230,210,.3);background:rgba(15,14,10,.5);color:var(--bone);font-family:"Archivo",system-ui,sans-serif;font-weight:600;font-stretch:112%;font-size:15px;letter-spacing:.02em;cursor:pointer;opacity:0;pointer-events:none;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);transition:opacity .5s ease-out,transform .16s cubic-bezier(.23,1,.32,1),border-color .15s ease}
+.flyer-top.show{opacity:1;pointer-events:auto}
+@media (hover:hover) and (pointer:fine){.flyer-top:hover{border-color:var(--sun)}}
+.flyer-top:active{transform:scale(.96)}
+.flyer-top:focus-visible{outline:2px solid var(--sun);outline-offset:2px}
+
+/* location stays locked until RSVP */
+.loc{display:inline-flex;align-items:center;gap:7px;margin:-6px 0 -2px;padding:9px 14px;min-height:40px;border:1px dashed rgba(254,224,93,.45);border-radius:999px;background:rgba(15,14,10,.45);color:var(--sun);font-family:"Archivo",system-ui,sans-serif;font-weight:700;font-stretch:118%;font-size:clamp(11px,min(3vw,1.6vh),13px);letter-spacing:.12em;text-transform:uppercase;cursor:pointer;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);transition:transform .16s cubic-bezier(.23,1,.32,1),border-color .2s ease,color .3s ease,background-color .2s ease}
+@media (hover:hover) and (pointer:fine){.loc:hover{border-color:var(--sun);background:rgba(15,14,10,.7)}}
+.loc:active{transform:scale(.96)}
+.loc:focus-visible{outline:2px solid var(--sun);outline-offset:3px}
+.loc .lk{flex:none}
+.loc .shackle{transition:transform .5s cubic-bezier(.23,1,.32,1);transform-origin:16px 11px}
+.loc.open{border-style:solid;border-color:rgba(134,205,230,.45);color:var(--bone);cursor:default}
+.loc.open .shackle{transform:translate(4px,-2px) rotate(28deg)}
+.loc.open [data-loc-text]{animation:locIn .7s cubic-bezier(.23,1,.32,1) both}
+@keyframes locIn{from{opacity:0;filter:blur(6px);transform:translateY(4px)}to{opacity:1;filter:none;transform:none}}
+@media (prefers-reduced-motion:reduce){.loc.open [data-loc-text]{animation:none}.loc .shackle{transition:none}}
+
+/* hint: a quiet footnote under the buttons, never competing with the scene */
+.cta .hint{position:static;left:auto;top:auto;transform:none;margin:2px 0 0;padding:0;border:0;background:none;-webkit-backdrop-filter:none;backdrop-filter:none;animation:none;
+  font:500 11px/1.3 "Archivo",system-ui,sans-serif;letter-spacing:.06em;color:rgba(239,230,210,.42);white-space:nowrap;opacity:0;filter:none;transition:opacity 1s ease-out}
+.cta .hint.show{opacity:1;transform:none;filter:none;animation:none}
+
+/* back to the concepts hub (top-left, mirrors Flyer/replay on the right) */
+.back{position:fixed;top:calc(env(safe-area-inset-top,0px) + 12px);left:12px;z-index:6;height:44px;display:inline-flex;align-items:center;gap:4px;padding:0 15px 0 10px;border-radius:999px;
+  border:1.5px solid rgba(239,230,210,.3);background:rgba(15,14,10,.5);color:var(--bone);text-decoration:none;font-family:"Archivo",system-ui,sans-serif;font-weight:600;font-size:15px;letter-spacing:.02em;
+  -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;touch-action:manipulation;
+  animation:backIn .6s cubic-bezier(.23,1,.32,1) .4s both;transition:transform .16s cubic-bezier(.23,1,.32,1),border-color .15s ease,background-color .15s ease}
+@keyframes backIn{from{opacity:0;transform:translateX(-6px)}}
+@media (hover:hover) and (pointer:fine){.back:hover{border-color:var(--sun);background:rgba(15,14,10,.75)}}
+.back:active{transform:scale(.96)}
+.back:focus-visible{outline:2px solid var(--sun);outline-offset:2px}
+@media (prefers-reduced-motion:reduce){.back{animation:none}}
+
+.send-err{margin:10px 0 0;font-size:13px;line-height:1.4;color:#ff8a5c;text-align:center}
+.send-err:empty{display:none}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+</style>
+</head>
+<body data-concept="cinematic">
+<h1 class="sr-only">David's Halloween. Friday, October 30. Presented by fomo.</h1>
+<a class="back" href="/" aria-label="Back to all three concepts"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>Concepts</a>
+<canvas id="scene" role="img" aria-label="Animated scene: a spooky sunset over palm trees and mountains. The camera pans down to the water, a ghost in sunglasses floats in on an orange pool float holding a martini, a and the title David's Halloween, 10.30, presented by fomo, drips into place. Tap the ghost to make him toast, or tap the water to make ripples."></canvas>
+<div class="cta" id="cta">
+  <div class="actions"><button class="rsvp-btn" type="button" data-open-rsvp>RSVP</button></div>
+  <img class="sponsor" src="/assets/img/cazcanes.82b3284ec3.webp" alt="Cazcanes Tequila">
+  <p class="hint" id="hint" aria-hidden="true">Tap the ghost or the water</p>
+</div>
+<button class="flyer-top" id="flyerTop" type="button" data-open-flyer aria-label="View and share the flyer"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12v7a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7"/><path d="M16 6l-4-4-4 4"/><path d="M12 2v13"/></svg>Flyer</button>
+<button class="replay" id="replay" type="button" aria-label="Replay intro"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/></svg></button>
+<button class="skip" id="skip" type="button">Skip intro</button>
+<div class="vignette"></div><div class="grain"></div>
+<dialog class="rsvp" id="rsvp" aria-labelledby="rsvp-h">
+  <div class="sheet">
+    <button class="close" type="button" aria-label="Close" data-close>
+      <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M3 3l12 12M15 3L3 15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+    <div data-step="form">
+      <img class="sheet-title" src="/assets/img/title-lockup.9ab50885e2.webp" alt="">
+      <h2 id="rsvp-h">RSVP for Friday, October 30</h2>
+      <p class="lede">Doors at 6 PM. The location unlocks when you RSVP, and we'll text you the exact address.</p>
+      <form novalidate>
+        <label class="field" data-f="name"><span>Full name</span><input name="name" autocomplete="name" placeholder="Casper Ghost" required><p class="err">Add your name so we can find you at the door.</p></label>
+        <div class="row2">
+          <label class="field" data-f="phone"><span>Phone</span><input name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="(310) 555-0130" required><p class="err">Enter a phone number we can text.</p></label>
+          <label class="field" data-f="ig"><span>Instagram</span><input name="ig" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" placeholder="@handle" required><p class="err">Add your Instagram handle, like @casper.</p></label>
+        </div>
+        <label class="field" data-f="email"><span>Email</span><input name="email" type="email" inputmode="email" autocomplete="email" placeholder="you@email.com" required><p class="err">Enter an email like you@email.com.</p></label>
+        <label class="hp" aria-hidden="true">Leave this empty<input name="website" tabindex="-1" autocomplete="off"></label>
+        <button class="rsvp-btn submit" type="submit">Send RSVP</button>
+        <p class="fine">Costumes encouraged. Spots are limited and confirmed by text.</p>
+      </form>
+    </div>
+    <div data-step="done" class="done" hidden>
+      <img src="/assets/img/ghost-confirmed.0f4d6038d6.webp" alt="">
+      <h2 tabindex="-1">You're on the list</h2>
+      <p class="lede" data-done-copy>We'll text the address before Friday. Bring your best costume.</p>
+      <button class="rsvp-btn" type="button" data-close>Done</button>
+    </div>
+  </div>
+</dialog>
+<dialog class="rsvp flyer" id="flyerDlg" aria-label="Event flyer">
+  <div class="sheet fsheet">
+    <button class="close" type="button" aria-label="Close" data-fclose>
+      <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M3 3l12 12M15 3L3 15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+    <img class="flyer-img" id="flyerImg" src="/assets/img/flyer.ad3fc3f535.jpg" alt="Flyer: David's Halloween, 10.30, presented by fomo. A ghost in sunglasses lounges on an orange pool float with a martini under a yellow moon. Cazcanes Tequila." width="1080" height="1350">
+    <div class="factions"><button class="rsvp-btn" type="button" id="shareFlyer">Share flyer</button><button class="flyer-btn" type="button" data-fclose-rsvp>RSVP</button></div>
+    <p class="fnote" id="fnote" role="status">Press and hold the flyer to save it.</p>
+  </div>
+</dialog>
+
+
+<script src="/assets/js/rsvp.js"></script>
+<script>
+// "Flyer" sheet: shows the exact flyer and shares it as an image where the browser allows
+document.addEventListener('DOMContentLoaded',function(){
+  const d=document.getElementById('flyerDlg'), img=document.getElementById('flyerImg'), note=document.getElementById('fnote'); let opener=null;
+  const rm=()=>matchMedia('(prefers-reduced-motion:reduce)').matches;
+  function open(e){opener=e&&e.currentTarget; note.textContent='Press and hold the flyer to save it.'; d.showModal(); requestAnimationFrame(()=>d.classList.add('in'));}
+  function close(cb){d.classList.remove('in'); setTimeout(()=>{d.close(); if(cb) cb(); else if(opener&&opener.focus) opener.focus();},rm()?120:260);}
+  document.querySelectorAll('[data-open-flyer]').forEach(b=>b.addEventListener('click',open));
+  d.querySelectorAll('[data-fclose]').forEach(b=>b.addEventListener('click',()=>close()));
+  d.querySelector('[data-fclose-rsvp]').addEventListener('click',()=>close(()=>window.__openRSVP&&window.__openRSVP()));
+  d.addEventListener('cancel',e=>{e.preventDefault();close();}); d.addEventListener('click',e=>{if(e.target===d) close();});
+  function fileFromImg(){const bin=atob(img.src.split(',')[1]), u=new Uint8Array(bin.length); for(let i=0;i<bin.length;i++) u[i]=bin.charCodeAt(i); return new File([u],'davids-halloween-flyer.jpg',{type:'image/jpeg'});}
+  document.getElementById('shareFlyer').addEventListener('click',async()=>{
+    const text="David's Halloween. Friday 10.30. Presented by fomo.";
+    try{const f=fileFromImg(); if(navigator.canShare&&navigator.canShare({files:[f]})){await navigator.share({files:[f],title:"David's Halloween",text}); note.textContent='Shared. See you Friday.'; return;}
+      if(navigator.share){await navigator.share({title:"David's Halloween",text}); note.textContent='Shared. See you Friday.'; return;}}
+    catch(e){if(e&&e.name==='AbortError') return;}
+    note.textContent="Sharing isn't available in this browser. Press and hold the flyer to save it, then post it.";});
+});
+
+</script>
+<script>
+(function(){
+  const dlg=document.getElementById('rsvp'); if(!dlg) return;
+  const form=dlg.querySelector('form'), stepForm=dlg.querySelector('[data-step="form"]'), stepDone=dlg.querySelector('[data-step="done"]');
+  let opener=null;
+  function open(e){opener=e&&e.currentTarget||document.activeElement; stepForm.hidden=false; stepDone.hidden=true;
+    dlg.showModal(); requestAnimationFrame(()=>dlg.classList.add('in'));
+    setTimeout(()=>{const f=form.querySelector('input'); if(f && matchMedia('(hover:hover)').matches) f.focus();},60);}
+  function close(){dlg.classList.remove('in'); const rm=matchMedia('(prefers-reduced-motion:reduce)').matches;
+    setTimeout(()=>{dlg.close(); if(opener&&opener.focus) opener.focus();}, rm?120:260);}
+  document.querySelectorAll('[data-open-rsvp]').forEach(b=>b.addEventListener('click',open));
+  dlg.querySelectorAll('[data-close]').forEach(b=>b.addEventListener('click',close));
+  dlg.addEventListener('cancel',e=>{e.preventDefault();close();});
+  dlg.addEventListener('click',e=>{if(e.target===dlg) close();});
+  const rules={name:v=>v.trim().length>1, phone:v=>v.replace(/\D/g,'').length>=10, email:v=>/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim()), ig:v=>/^@?[A-Za-z0-9._]{1,30}$/.test(v.trim())};
+  form.querySelectorAll('input').forEach(i=>i.addEventListener('input',()=>{const f=i.closest('.field'); if(f.hasAttribute('data-invalid') && (!rules[i.name]||rules[i.name](i.value))) f.removeAttribute('data-invalid');}));
+  form.addEventListener('submit',async e=>{e.preventDefault(); let first=null;
+    for(const k in rules){const i=form.elements[k], f=i.closest('.field'); if(!rules[k](i.value)){f.setAttribute('data-invalid',''); first=first||i;} else f.removeAttribute('data-invalid');}
+    if(first){first.focus();return;}
+    if(!(await window.sendRSVP(form))) return; // posts to /api/rsvp when an endpoint is configured
+    const name=form.elements.name.value.trim().split(/\s+/)[0];
+    stepDone.querySelector('h2').textContent=`You're on the list, ${name}`;
+    stepDone.querySelector('[data-done-copy]').textContent=`The party is in Sherman Oaks. We'll text ${form.elements.phone.value.trim()} the exact address before Friday. Bring your best costume.`;
+    stepForm.hidden=true; stepDone.hidden=false; stepDone.querySelector('h2').focus();
+    window.dispatchEvent(new CustomEvent('rsvp:sent'));
+  });
+  window.__openRSVP=open;
+})();
+
+(()=>{
+const A={band:"/assets/img/moon-mountains.0dcd6d9cc8.webp",ghost:"/assets/img/ghost-confirmed.0f4d6038d6.webp",palm:"/assets/img/palm.4a28e94d5e.webp",davids:"/assets/img/title-davids.9ff9299410.webp",hall:"/assets/img/title-halloween.f077893f9e.webp",date:"/assets/img/title-date.9373945921.webp",c0:"/assets/img/cloud-a.404e43d8cd.webp",c1:"/assets/img/cloud-b.ef0056e5d4.webp"};
+const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const cv=document.getElementById('scene'), ctx=cv.getContext('2d');
+const flyerTop=document.getElementById('flyerTop'), cta=document.getElementById('cta'), replay=document.getElementById('replay'), skip=document.getElementById('skip'), hint=document.getElementById('hint');
+let W,H,dpr;
+const clamp=(x,a,b)=>Math.max(a,Math.min(b,x)), lerp=(a,b,t)=>a+(b-a)*t;
+const eOut=x=>{x=clamp(x,0,1);return 1-Math.pow(1-x,3)}, eOutQ=x=>{x=clamp(x,0,1);return 1-Math.pow(1-x,5)}, eIO=x=>{x=clamp(x,0,1);return x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2};
+const spring=x=>x<=0?0:1-Math.exp(-6*x)*Math.cos(11*x);
+const rnd=(s=>()=>(s=(s*16807)%2147483647)/2147483647)(7);
+const imgs={}; const load=k=>new Promise(r=>{const i=new Image(); i.onload=()=>{imgs[k]=i;r()}; i.onerror=r; i.src=A[k];});
+const mk=(w,h)=>{const c=document.createElement('canvas'); c.width=w; c.height=h; return [c,c.getContext('2d')];};
+const vib=ms=>{try{navigator.vibrate&&navigator.vibrate(ms)}catch(e){}};
+
+/* ---------- layout (final frame), CSS px ---------- */
+let L={};
+function fit(){dpr=Math.min(devicePixelRatio||1,2); W=innerWidth; H=innerHeight; cv.width=Math.round(W*dpr); cv.height=Math.round(H*dpr); layout();}
+function layout(){
+  const cs=getComputedStyle(document.documentElement), safeTop=parseFloat(cs.paddingTop)||0, safeBot=parseFloat(cs.paddingBottom)||0;
+  const wide=W/H>1.1;
+  const titleW=Math.min(W*(wide?0.5:0.9),H*(wide?0.37:0.29)/0.579,820), titleH=titleW*0.579;
+  // keep the title clear of the Flyer + replay buttons (top-right) when it is wide enough to reach them
+  const titleTop=safeTop+((W/2+titleW/2>W-180)?64:Math.max(H*0.04,14));
+  const ctaH=cta.offsetHeight||150, ctaTop=H-safeBot-Math.max(H*0.03,14)-ctaH;
+  const sB0=clamp(Math.max(W/1080,H/1500),0.34,1.2);
+  const horizon=wide?Math.max(titleTop+titleH+H*0.08,H*0.5):Math.min(titleTop+titleH+185*sB0*0.95,H*0.48);
+  const sBand=wide?clamp((horizon-titleTop-titleH*0.55)/185,0.4,1.35):sB0;
+  // the ghost is the hero: his float sits just above the buttons, his head may rise past the horizon
+  const room=ctaTop-12-horizon, roomT=ctaTop-12-(titleTop+titleH+H*0.035);
+  const ghostW=Math.max(160,Math.min(wide?W*0.62:W*1.04, wide?H*1.05:H*0.75, room/0.6*880/465, roomT*880/465)), gh=ghostW*465/880;
+  const ghostCY=Math.min(ctaTop-12-gh*0.5, horizon+(ctaTop-horizon)*0.58);
+  let bandX=W/2-540*sBand; const moonX=bandX+808*sBand; const maxMoon=Math.min(W-118*sBand,W*0.74); if(moonX>maxMoon) bandX-=(moonX-maxMoon);
+  const tx=W/2-titleW/2, ballR=wide?clamp(H*0.08,46,92):clamp(W*0.14,40,66);
+  const ballX=wide?Math.max(ballR*1.1,tx-ballR*0.4):ballR*0.5, ballY=wide?titleTop+ballR*0.9:safeTop+ballR*1.25;
+  L={titleW,titleH,titleTop,tx,horizon,sBand,ghostW,gh,ghostCY,bandX,moonX:bandX+808*sBand,pan:H*0.44,wide,ballR,ballX,ballY,ctaTop};
+  hint.style.setProperty('--hint-top',(wide?titleTop+titleH+H*0.012:horizon+Math.max(12,H*0.018))+'px');
+}
+addEventListener('resize',fit);
+
+/* ---------- water ---------- */
+const streaks=[]; for(let i=0;i<150;i++){const d=Math.pow(rnd(),0.8); streaks.push({u:rnd()*1.3-0.15,d,l:0.05+rnd()*0.2*(0.45+d),th:0.6+rnd()*0.8,sp:(rnd()<.5?-1:1)*(0.004+rnd()*0.01),c:rnd()<0.32?'#56b6f2':(rnd()<0.6?'#2b86c8':'#1b5d8f'),ph:rnd()*6.28});}
+const refl=[]; for(let i=0;i<46;i++){const d=Math.pow(i/46,1.15); refl.push({d,w:0.35+rnd()*0.65,ph:rnd()*6.28,o:(rnd()-0.5)});}
+const stars=[]; for(let i=0;i<80;i++) stars.push({x:rnd(),y:rnd(),s:0.6+rnd()*1.4,ph:rnd()*6.28});
+const clouds=[]; for(let i=0;i<7;i++) clouds.push({x:rnd(),y:0.12+rnd()*0.62,sc:0.5+rnd()*0.9,k:rnd()<.7?'c0':'c1',f:0.45+rnd()*0.4,sp:(rnd()-0.4)*6,flip:rnd()<.5});
+function lens(x,y,len,th){ctx.moveTo(x,y);ctx.quadraticCurveTo(x+len*0.5,y-th,x+len,y);ctx.quadraticCurveTo(x+len*0.55,y+th*0.7,x,y);}
+function drawWater(y0,t,sx){
+  const h=H-y0+40, s=L.sBand;
+  ctx.fillStyle='#0d0c09'; ctx.fillRect(-W,y0,W*3,h);
+  ctx.fillStyle='#2b86c8'; ctx.fillRect(-W,y0-1,W*3,Math.max(2,4*s));
+  const groups={};
+  for(const k of streaks){const y=y0+6*s+Math.pow(k.d,1.5)*h; const th=(1+k.th*(0.8+k.d*7))*s*1.15;
+    const len=k.l*W*(0.6+0.4*Math.sin(t*0.8+k.ph)); let x=((k.u+t*k.sp)%1.3+1.3)%1.3-0.15; x=x*W+sx*k.d;
+    (groups[k.c]||(groups[k.c]=[])).push([x,y,len,th]);}
+  for(const c in groups){ctx.fillStyle=c; ctx.beginPath(); for(const g of groups[c]) lens(g[0],g[1],g[2],g[3]); ctx.fill();}
+  ctx.fillStyle='#fee05d'; ctx.beginPath();
+  for(const r of refl){const y=y0+5*s+Math.pow(r.d,1.6)*h*0.62; const spread=(70+r.d*150)*s; const w=spread*r.w*(0.65+0.35*Math.sin(t*2.2+r.ph)); const th=(1.6+r.d*6)*s;
+    const cx=L.moonX+r.o*spread*0.5+Math.sin(t*1.3+r.ph)*4*s; lens(cx-w/2,y,w,th);}
+  ctx.fill();
+}
+
+/* ---------- glow sprite cache ---------- */
+const GLOW={}; function glowSprite(col){if(GLOW[col]) return GLOW[col]; const [c,g]=mk(96,96); const rg=g.createRadialGradient(48,48,0,48,48,48); rg.addColorStop(0,col.replace('A',1)); rg.addColorStop(0.3,col.replace('A',0.5)); rg.addColorStop(1,col.replace('A',0)); g.fillStyle=rg; g.fillRect(0,0,96,96); return GLOW[col]=c;}
+function glow(x,y,rx,ry,col,a){if(a<=0.01) return; ctx.globalAlpha=Math.min(1,a); ctx.drawImage(glowSprite(col),x-rx,y-ry,rx*2,ry*2); ctx.globalAlpha=1;}
+function star4(x,y,r,col,a){ctx.globalAlpha=a; ctx.fillStyle=col; ctx.beginPath(); ctx.moveTo(x,y-r); ctx.lineTo(x+r*0.2,y-r*0.2); ctx.lineTo(x+r,y); ctx.lineTo(x+r*0.2,y+r*0.2); ctx.lineTo(x,y+r); ctx.lineTo(x-r*0.2,y+r*0.2); ctx.lineTo(x-r,y); ctx.lineTo(x-r*0.2,y-r*0.2); ctx.closePath(); ctx.fill(); ctx.globalAlpha=1;}
+
+/* ---------- disco ball (from the flyer's top-left corner) ---------- */
+const tileHash=[]; for(let i=0;i<400;i++) tileHash.push(rnd());
+let ballRot=0;
+function drawBall(cx,cy,R,t,party){
+  ctx.save();
+  ctx.strokeStyle='rgba(239,230,210,.55)'; ctx.lineWidth=Math.max(1,R*0.03); ctx.beginPath(); ctx.moveTo(cx,-10); ctx.lineTo(cx,cy-R); ctx.stroke();
+  ctx.fillStyle='#d9d2c0'; ctx.fillRect(cx-R*0.1,cy-R*1.08,R*0.2,R*0.12);
+  ctx.beginPath(); ctx.arc(cx,cy,R,0,Math.PI*2); ctx.fillStyle='#24221c'; ctx.fill(); ctx.save(); ctx.clip();
+  ctx.fillStyle='#0f0e0a'; ctx.fillRect(cx-R,cy-R,R*2,R*2); const rows=15, dl=Math.PI/rows; let hi=0;
+  for(let r=0;r<rows;r++){const lat=-Math.PI/2+dl*(r+0.5), cl=Math.cos(lat), y=cy+R*Math.sin(lat), th=R*dl*cl*0.8;
+    const n=Math.max(6,Math.round(34*cl)); const dlon=Math.PI*2/n;
+    for(let j=0;j<n;j++){const lon=j*dlon+ballRot*(r%2?1:1.0); const cz=Math.cos(lon); if(cz<=0.02) continue;
+      const x=cx+R*cl*Math.sin(lon), w=dlon*R*cl*cz*0.84;
+      const hsh=tileHash[(r*31+j)%400]; const lightv=0.25+0.55*Math.max(0,cz*0.55-Math.sin(lon)*0.45-Math.sin(lat)*0.5);
+      const flash=Math.sin(t*(party?9:3.2)+hsh*60)>(party?0.86:0.95);
+      let col;
+      if(flash){col=hsh<0.4?'#fff6cf':(hsh<0.7?'#fee05d':'#86cde6');}
+      else if(hsh<0.1) col=`rgba(254,78,9,${0.5+lightv*0.5})`; else if(hsh<0.2) col=`rgba(95,178,232,${0.45+lightv*0.5})`;
+      else {const l=Math.round(18+lightv*62); col=`hsl(42,12%,${l}%)`;}
+      ctx.fillStyle=col; ctx.fillRect(x-w/2,y-th/2,w,th);
+      if(flash&&hi<6){hi++; ctx.globalCompositeOperation='lighter'; glow(x,y,R*0.35,R*0.35,'rgba(255,240,190,A)',0.8); ctx.globalCompositeOperation='source-over';}}}
+  const sh=ctx.createRadialGradient(cx-R*0.3,cy-R*0.35,R*0.2,cx,cy,R); sh.addColorStop(0,'rgba(0,0,0,0)'); sh.addColorStop(0.75,'rgba(0,0,0,.12)'); sh.addColorStop(1,'rgba(0,0,0,.55)'); ctx.fillStyle=sh; ctx.fillRect(cx-R,cy-R,R*2,R*2);
+  ctx.restore();
+  ctx.lineWidth=Math.max(1.5,R*0.05); ctx.strokeStyle='#0f0e0a'; ctx.beginPath(); ctx.arc(cx,cy,R,0,Math.PI*2); ctx.stroke();
+  ctx.globalCompositeOperation='lighter'; glow(cx-R*0.38,cy-R*0.42,R*0.5,R*0.5,'rgba(255,248,220,A)',0.55); ctx.globalCompositeOperation='source-over';
+  star4(cx-R*0.4,cy-R*0.45,R*0.28*(0.8+0.2*Math.sin(t*4)),'#fffbe8',0.9);
+  ctx.restore();
+}
+// light spots thrown across the scene by the spinning ball
+const spots=[]; for(let i=0;i<46;i++) spots.push({a:rnd(),y:rnd(),s:0.6+rnd()*0.9,c:['rgba(255,246,207,A)','rgba(254,224,93,A)','rgba(134,205,230,A)','rgba(254,120,40,A)'][(rnd()*4)|0],ph:rnd()*6.28});
+function drawSpots(t,amt,party){
+  if(amt<=0) return; ctx.globalCompositeOperation='lighter';
+  const n=party?46:26;
+  for(let i=0;i<n;i++){const p=spots[i]; const u=((p.a+ballRot*0.09*(0.7+p.s*0.3))%1+1)%1; const x=u*W*1.3-W*0.15; const y=lerp(H*0.04,H*0.97,p.y);
+    const onWater=y>L.horizon; const r=(party?11:7)*p.s*Math.max(0.8,Math.min(W,H)/700);
+    const tw=0.6+0.4*Math.sin(t*5+p.ph);
+    glow(x,y,r*(onWater?3.2:1.8),r*(onWater?0.8:1.8),p.c,amt*(party?0.95:0.55)*tw);
+    if(!onWater&&party) star4(x,y,r*0.55,'#fffbe8',amt*0.8*tw);}
+  ctx.globalCompositeOperation='source-over';
+}
+function drawBeams(cx,cy,t,amt){
+  if(amt<=0) return; ctx.save(); ctx.globalCompositeOperation='lighter'; const len=Math.hypot(W,H)*1.1;
+  const cols=['rgba(254,224,93,','rgba(95,178,232,','rgba(254,78,9,','rgba(239,230,210,'];
+  for(let i=0;i<8;i++){const a=ballRot*0.6+i*Math.PI/4+Math.sin(t*0.7+i)*0.25; const w=0.05+0.02*Math.sin(t*2+i);
+    const g=ctx.createLinearGradient(cx,cy,cx+Math.cos(a)*len,cy+Math.sin(a)*len); g.addColorStop(0,cols[i%4]+(0.3*amt)+')'); g.addColorStop(1,cols[i%4]+'0)');
+    ctx.fillStyle=g; ctx.beginPath(); ctx.moveTo(cx,cy); ctx.lineTo(cx+Math.cos(a-w)*len,cy+Math.sin(a-w)*len); ctx.lineTo(cx+Math.cos(a+w)*len,cy+Math.sin(a+w)*len); ctx.closePath(); ctx.fill();}
+  ctx.restore();
+}
+
+/* ---------- title: the flyer's exact lettering ---------- */
+const COLS=38, colDelay=[]; {let s=5; for(let i=0;i<COLS;i++){s=(s*16807)%2147483647; colDelay.push((s/2147483647)*0.28+Math.sin(i*0.9)*0.05);}}
+const tips=[[203,531],[649,453],[930,537],[706,471],[1020,498],[351,449]]; const drips=[]; let nextDrip=0;
+
+/* ---------- interaction state ---------- */
+const P={x:0,y:0,tx:0,ty:0};
+const ripples=[], parts=[], bats=[], words=[];
+let cheer=-9, cheers=0, kick=0, partyUntil=-9, partyAmt=0, ballHit=-9, interacted=false;
+const CHEERS=['Cheers!','Boo!','Salud!','Spooky!','Bottoms up','Boo-yah!'];
+
+/* ---------- timeline ---------- */
+const T={pan0:0.5,pan1:4.9,g0:3.9,g1:7.0,ball:5.6,d0:6.6,h0:7.0,dt0:8.25,end:8.9};
+let start=null, skipTo=null, done=false, lastNow=0, tNow=0, fixT=null; try{const q=new URLSearchParams(location.search); if(q.get('t')) fixT=parseFloat(q.get('t')); if(q.get('party')) partyUntil=999;}catch(e){}
+function frame(now){
+  if(start===null) start=now; if(skipTo!==null){start=now-skipTo*1000; skipTo=null;}
+  let t=(now-start)/1000; if(RM) t=99; if(fixT!=null) t=fixT; const dt=Math.min(0.05,Math.max(0,(now-lastNow)/1000)); lastNow=now; tNow=t;
+  P.x+=(P.tx-P.x)*Math.min(1,dt*4); P.y+=(P.ty-P.y)*Math.min(1,dt*4);
+  const party=t<partyUntil; partyAmt+=((party?1:0)-partyAmt)*Math.min(1,dt*(party?6:2));
+  ballRot+=dt*(0.55+partyAmt*2.6+(RM?-0.55:0));
+  kick*=Math.pow(0.25,dt);
+  ctx.setTransform(dpr,0,0,dpr,0,0);
+  const p=eIO((t-T.pan0)/(T.pan1-T.pan0)), off=(1-p)*L.pan, s=L.sBand;
+  const zoom=lerp(1.12,1,p);
+  ctx.fillStyle='#0f0e0a'; ctx.fillRect(0,0,W,H);
+  const px=P.x, py=P.y;
+  ctx.save(); ctx.translate(W/2,L.horizon+off); ctx.scale(zoom,zoom); ctx.translate(-W/2,-(L.horizon+off));
+  const hz=L.horizon+off;
+  // sunset glow, warmer when the party is on
+  const glowA=lerp(0.42,0.16,p)*(0.9+0.1*Math.sin(t*0.7))+partyAmt*0.08*(0.6+0.4*Math.sin(t*8));
+  let g=ctx.createRadialGradient(L.moonX,hz-80*s,20*s,L.moonX,hz-60*s,Math.max(W,H)*0.75);
+  g.addColorStop(0,`rgba(254,78,9,${glowA})`); g.addColorStop(0.35,`rgba(254,78,9,${glowA*0.35})`); g.addColorStop(1,'rgba(254,78,9,0)');
+  ctx.fillStyle=g; ctx.fillRect(-W*0.2,-H*0.2,W*1.4,hz+H*0.2);
+  ctx.fillStyle='#efe6d2'; for(const st of stars){const y=st.y*(hz-30*s)+(1-p)*L.pan*-0.55; if(y>hz-40*s) continue; ctx.globalAlpha=0.25+0.35*(0.5+0.5*Math.sin(t*1.7+st.ph)); ctx.fillRect(st.x*W-px*2,y-py*2,st.s,st.s);}
+  ctx.globalAlpha=1;
+  for(const c of clouds){const im=imgs[c.k]; const w=im.width*s*c.sc*1.2, h=im.height*s*c.sc*1.2;
+    const y=c.y*(L.horizon-80*s)-py*3; let x=((c.x*W*1.4+t*c.sp*s)%(W*1.4+w))-w*0.5-px*4;
+    ctx.save(); if(c.flip){ctx.translate(x+w,y);ctx.scale(-1,1);ctx.drawImage(im,0,0,w,h);} else ctx.drawImage(im,x,y,w,h); ctx.restore();}
+  // band: moon, mountains, shoreline
+  const bw=1080*s, bh=185*s, by=hz-183*s, bx=L.bandX-px*7;
+  ctx.drawImage(imgs.band,bx,by,bw,bh);
+  for(let k=1;k<=5;k++){
+    for(const sgn of [-1,1]){const x0=sgn<0?bx-bw*k:bx+bw*k; if(x0>W||x0+bw<0) continue; ctx.save(); ctx.translate(x0+(k%2?bw:0),by); if(k%2) ctx.scale(-1,1); ctx.drawImage(imgs.band,0,0,bw,bh); ctx.restore();}}
+  g=ctx.createRadialGradient(L.moonX-px*7,hz-78*s,90*s,L.moonX-px*7,hz-78*s,230*s); g.addColorStop(0,'rgba(254,224,93,.13)'); g.addColorStop(1,'rgba(254,224,93,0)');
+  ctx.globalCompositeOperation='lighter'; ctx.fillStyle=g; ctx.fillRect(L.moonX-240*s-px*7,hz-320*s,480*s,320*s); ctx.globalCompositeOperation='source-over';
+  drawWater(hz+6*s,RM?0:t,-px*10);
+  ctx.restore();
+  // tap ripples on the water
+  for(let i=ripples.length-1;i>=0;i--){const r=ripples[i], a=t-r.t; if(a>1.8||a<0){ripples.splice(i,1);continue;}
+    const depth=clamp((r.y-L.horizon)/(H-L.horizon),0.05,1), sc=(0.35+depth)*Math.min(W,H)*0.16;
+    ctx.lineWidth=Math.max(1.5,3*depth);
+    for(let k=0;k<3;k++){const q=a-k*0.18; if(q<=0) continue; const rr=eOut(q/1.5)*sc*(1+k*0.35); ctx.globalAlpha=Math.max(0,(1-q/1.6))*0.8; ctx.strokeStyle=k%2?'#56b6f2':'#a9dcf7'; ctx.beginPath(); ctx.ellipse(r.x,r.y,rr,rr*(0.18+depth*0.12),0,0,Math.PI*2); ctx.stroke();}
+    ctx.globalAlpha=1;}
+  // foreground palms
+  const pOff=off*1.18, ps=L.wide?s*1.05:s*1.12;
+  const swayAmt=1+partyAmt*2.2, sway=a=>(Math.sin(t*(0.8+partyAmt*2.2)+a)*1.1*swayAmt+Math.sin(t*2.0+a*2)*0.25)*Math.PI/180;
+  const baseY=L.horizon+pOff+10*s;
+  ctx.save(); ctx.translate(W+14*ps-px*16,baseY-py*6); ctx.rotate(sway(0)); ctx.drawImage(imgs.palm,-176*ps,-328*ps,185*ps,330*ps); ctx.restore();
+  ctx.save(); ctx.translate(-14*ps-px*16,baseY+6*s-py*6); ctx.scale(-0.88,0.88); ctx.rotate(sway(1.7)); ctx.drawImage(imgs.palm,-176*ps,-328*ps,185*ps,330*ps); ctx.restore();
+  // the ghost floats in, then lives here
+  const gp=eOut((t-T.g0)/(T.g1-T.g0)), gw=L.ghostW, gh=L.gh;
+  let G=null;
+  if(t>T.g0){
+    const ca=t-cheer, cb=(ca>=0&&ca<1.2)?clamp(Math.exp(-4*ca)*Math.sin(ca*14),-1,1):0, beat=partyAmt*Math.abs(Math.sin(t*Math.PI*2))*gh*0.025;
+    const gx=lerp(W+gw*0.65,W/2,gp)-px*9, bob=Math.sin(t*1.2)*gh*0.012*(1+kick*3)+Math.sin(t*5.3)*gh*0.01*kick;
+    const gy=L.ghostCY+(1-gp)*gh*0.08+bob+off*1.1-py*5-Math.max(0,cb)*gh*0.06-beat;
+    const rot=lerp(-0.05,0,gp)+Math.sin(t*1.2+0.8)*0.006-cb*0.04+partyAmt*Math.sin(t*Math.PI)*0.03;
+    const sc=1+Math.max(0,cb)*0.05;
+    ctx.save(); ctx.translate(gx,gy+gh*0.36); ctx.scale(1,0.2);
+    for(let i=0;i<4;i++){const ph=((t*0.45+i/4)%1); const r=gw*(0.42+ph*0.55); ctx.globalAlpha=(1-ph)*0.55*gp; ctx.strokeStyle=i%2?'#2b86c8':'#56b6f2'; ctx.lineWidth=(6+ph*10)*s/0.2*0.35; ctx.beginPath(); ctx.ellipse(0,0,r,r*0.95,0,0.15*Math.PI,0.85*Math.PI); ctx.stroke(); ctx.beginPath(); ctx.ellipse(0,0,r,r*0.95,0,1.12*Math.PI,1.88*Math.PI); ctx.globalAlpha*=0.45; ctx.stroke();}
+    ctx.restore(); ctx.globalAlpha=1;
+    ctx.save(); ctx.translate(gx,gy); ctx.rotate(rot); ctx.scale(sc,sc); ctx.drawImage(imgs.ghost,-gw/2,-gh/2,gw,gh); ctx.restore();
+    G={x:gx,y:gy,w:gw*sc,h:gh*sc,glassX:gx-gw/2+gw*0.19,glassY:gy-gh/2+gh*0.17};
+    // martini glint
+    const gl=Math.max(0,Math.sin(t*1.6))**10; if(gl>0.05) star4(G.glassX+gw*0.02,G.glassY-gh*0.04,gw*0.02*(1+gl),'#fffbe8',gl*gp);
+  }
+  Gcache=G;
+  L.ballLive=null;
+  // title
+  const k=L.titleW/950, tx=L.tx-px*5, tt=L.titleTop-py*3+Math.sin(t*0.9)*1.2;
+  const td=eOutQ((t-T.d0)/0.75); if(td>0){ctx.globalAlpha=td; ctx.drawImage(imgs.davids,tx,tt-(1-td)*30*k,950*k,158*k);}
+  ctx.globalAlpha=1;
+  // HALLOWEEN drips in column by column, drawn as one clipped image (no seams)
+  const tl=t-T.h0; if(tl>0){const Hi=imgs.hall, HW=Hi.width, HH=Hi.height, cw=HW/COLS, hx=tx+(98-100)*k, hy=tt+(152-25)*k;
+    ctx.save(); ctx.beginPath(); let full=true;
+    for(let i=0;i<COLS;i++){const q=clamp((tl-colDelay[i])/1.05,0,1); if(q<1) full=false; if(q<=0) continue; const e=1-Math.pow(1-q,2.4);
+      ctx.rect(hx+i*cw*k-0.5,hy-2,cw*k+1,HH*e*k+2);}
+    if(!full) ctx.clip(); ctx.drawImage(Hi,hx,hy,HW*k,HH*k); ctx.restore();}
+  const tdt=eOut((t-T.dt0)/0.6); if(tdt>0){ctx.globalAlpha=tdt; ctx.drawImage(imgs.date,tx+140*k,tt+(462+(1-tdt)*10)*k,660*k,90*k);}
+  ctx.globalAlpha=1;
+  // paint keeps dripping from the lettering
+  if(!RM&&t>T.dt0+0.6){ if(t>nextDrip){const q=tips[(Math.random()*tips.length)|0]; drips.push({x:q[0],y:q[1]-6,v:0,life:0,len:0}); nextDrip=t+(party?0.5:2.2)+Math.random()*(party?1:3);}
+    ctx.fillStyle='#fe4e09';
+    for(let i=drips.length-1;i>=0;i--){const d=drips[i]; d.life+=dt; if(d.life<0.9) d.len=eOut(d.life/0.9)*9; else {d.v+=30*dt; d.y+=d.v;}
+      const a=clamp(1-(d.y-500)/120,0,1); if(a<=0||d.y>700){drips.splice(i,1);continue;}
+      const X=tx+(d.x-100)*k, Y=tt+(d.y-25)*k; ctx.globalAlpha=a; ctx.beginPath(); ctx.ellipse(X,Y+d.len*k,3.2*k,(3.2+d.len*0.35)*k,0,0,Math.PI*2); ctx.fill(); if(d.life<0.9) ctx.fillRect(X-2.2*k,Y-4*k,4.4*k,(d.len+4)*k);}
+    ctx.globalAlpha=1;}
+  // particles: splashes, sparkles
+  for(let i=parts.length-1;i>=0;i--){const q=parts[i]; q.life-=dt; if(q.life<=0){parts.splice(i,1);continue;} q.vy+=q.g*dt; q.x+=q.vx*dt; q.y+=q.vy*dt;
+    if(q.kind==='star') star4(q.x,q.y,q.r*(0.6+q.life),q.c,Math.min(1,q.life*1.6)); else {ctx.globalAlpha=Math.min(1,q.life*2); ctx.fillStyle=q.c; ctx.beginPath(); ctx.arc(q.x,q.y,q.r,0,Math.PI*2); ctx.fill(); ctx.globalAlpha=1;}}
+  // words from the ghost
+  ctx.textAlign='center'; for(let i=words.length-1;i>=0;i--){const w=words[i], a=t-w.t; if(a>1.4){words.splice(i,1);continue;}
+    const sz=Math.max(18,Math.min(W,H)*0.045); ctx.font=`${sz}px "Young Serif",Georgia,serif`; const y=w.y-eOut(a/1.4)*sz*2.2; const al=a<0.15?a/0.15:1-clamp((a-0.8)/0.6,0,1);
+    ctx.globalAlpha=al; ctx.lineWidth=sz*0.18; ctx.lineJoin='round'; ctx.strokeStyle='#0f0e0a'; ctx.strokeText(w.s,w.x,y); ctx.fillStyle='#fee05d'; ctx.fillText(w.s,w.x,y); ctx.globalAlpha=1;}
+  // bats
+  for(let i=bats.length-1;i>=0;i--){const b=bats[i], a=t-b.t; if(a>3.2){bats.splice(i,1);continue;} const x=b.x+b.dir*a*W*0.32, y=b.y-a*H*0.05+Math.sin(a*6)*H*0.012; const sz=Math.max(9,Math.min(W,H)*0.028)*(1-a*0.12);
+    ctx.fillStyle='#050403'; bat(x,y,sz,Math.sin(t*18+b.ph));}
+  if(t>=T.end&&!done){done=true; cta.classList.add('show'); replay.classList.add('show'); flyerTop.classList.add('show'); skip.classList.add('hide'); layout(); if(!interacted&&!RM) setTimeout(()=>{if(!interacted) hint.classList.add('show');},900);}
+  requestAnimationFrame(frame);
+}
+function bat(x,y,s,fl){ctx.beginPath(); const wy=-fl*s*0.8;
+  for(const sg of [-1,1]){ctx.moveTo(x,y); ctx.quadraticCurveTo(x+sg*s*0.6,y+wy-s*0.3,x+sg*s*1.4,y+wy); ctx.lineTo(x+sg*s*1.15,y+wy*0.4+s*0.25); ctx.lineTo(x+sg*s*0.85,y+wy*0.3+s*0.15); ctx.lineTo(x+sg*s*0.55,y+s*0.32); ctx.lineTo(x,y+s*0.2);}
+  ctx.fill(); ctx.beginPath(); ctx.ellipse(x,y+s*0.1,s*0.16,s*0.26,0,0,7); ctx.fill();
+  ctx.strokeStyle='rgba(254,224,93,.35)'; ctx.lineWidth=1; ctx.stroke();}
+
+/* ---------- input ---------- */
+function interact(){ if(!interacted){interacted=true; hint.classList.remove('show');}
+  try{if(typeof DeviceOrientationEvent!=='undefined'&&DeviceOrientationEvent.requestPermission&&!interact.asked){interact.asked=true; DeviceOrientationEvent.requestPermission().catch(()=>{});}}catch(e){} }
+function tap(x,y){
+  const t=tNow;
+  if(!done){ if(start!==null) skipTo=T.end-0.15; return; }
+  interact();
+  const B=L.ballLive; if(B&&Math.hypot(x-B.x,y-B.y)<B.r*1.25){ballHit=t; partyUntil=t+7; vib([12,40,12]);
+    for(let i=0;i<18;i++){const a=Math.random()*Math.PI*2, v=120+Math.random()*260; parts.push({kind:'star',x:B.x,y:B.y,vx:Math.cos(a)*v,vy:Math.sin(a)*v,g:120,r:4+Math.random()*5,c:['#fee05d','#86cde6','#fe4e09','#fffbe8'][i%4],life:0.7+Math.random()*0.5});} return;}
+  const G=lastG(); if(G&&x>G.x-G.w*0.42&&x<G.x+G.w*0.45&&y>G.y-G.h*0.5&&y<G.y+G.h*0.42){cheer=t; cheers++; kick=1; vib(10);
+    words.push({s:CHEERS[(cheers-1)%CHEERS.length],x:G.glassX+G.w*0.05,y:G.glassY-G.h*0.08,t});
+    for(let i=0;i<14;i++){const a=-Math.PI/2+(Math.random()-0.5)*2.2, v=90+Math.random()*200; parts.push({kind:'star',x:G.glassX,y:G.glassY,vx:Math.cos(a)*v,vy:Math.sin(a)*v,g:260,r:3+Math.random()*4,c:i%3?'#fee05d':'#fffbe8',life:0.6+Math.random()*0.5});}
+    ripples.push({x:G.x,y:G.y+G.h*0.36,t}); return;}
+  if(y>L.horizon+4){ripples.push({x,y,t}); if(ripples.length>14) ripples.shift(); vib(6);
+    for(let i=0;i<9;i++){const a=-Math.PI/2+(Math.random()-0.5)*1.6, v=70+Math.random()*150; parts.push({kind:'drop',x,y,vx:Math.cos(a)*v,vy:Math.sin(a)*v,g:520,r:1.5+Math.random()*2.2,c:i%2?'#a9dcf7':'#56b6f2',life:0.5+Math.random()*0.3});}
+    if(G&&Math.hypot(x-G.x,(y-G.y)*2)<G.w*0.8) kick=1; return;}
+  bats.push({x,y,t,dir:x<W/2?1:-1,ph:Math.random()*6}); if(bats.length>8) bats.shift(); vib(6);
+}
+let Gcache=null; function lastG(){return Gcache;}
+cv.addEventListener('pointerdown',e=>{tap(e.clientX,e.clientY); dragging=e.pointerType!=='mouse'; if(dragging){dragX=e.clientX; dragY=e.clientY;}});
+let dragging=false, dragX=0, dragY=0;
+addEventListener('pointermove',e=>{ if(e.pointerType==='mouse'){P.tx=clamp((e.clientX/W)*2-1,-1,1); P.ty=clamp((e.clientY/H)*2-1,-1,1);}
+  else if(dragging){P.tx=clamp((e.clientX-dragX)/(W*0.35),-1,1); P.ty=clamp((e.clientY-dragY)/(H*0.35),-1,1);} },{passive:true});
+const endDrag=()=>{dragging=false; P.tx=0; P.ty=0;};
+addEventListener('pointerup',e=>{if(e.pointerType!=='mouse') endDrag();}); addEventListener('pointercancel',endDrag);
+addEventListener('mouseleave',()=>{P.tx=0;P.ty=0;});
+addEventListener('deviceorientation',e=>{if(e.gamma==null||dragging) return; P.tx=clamp(e.gamma/25,-1,1); P.ty=clamp((e.beta-45)/25,-1,1);},{passive:true});
+addEventListener('keydown',e=>{ if(document.querySelector('dialog[open]')) return; if(e.key==='d'||e.key==='D'){const B=L.ballLive; if(B&&done) tap(B.x,B.y);} });
+skip.addEventListener('click',()=>{if(!done&&start!==null) skipTo=T.end-0.15;});
+replay.addEventListener('click',()=>{start=null; done=false; partyUntil=-9; cheer=-9; kick=0; ripples.length=0; parts.length=0; words.length=0; bats.length=0; cta.classList.remove('show'); replay.classList.remove('show'); flyerTop.classList.remove('show'); skip.classList.remove('hide'); hint.classList.remove('show');});
+fit();
+Promise.all(Object.keys(A).map(load)).then(()=>{ if(RM) skip.classList.add('hide'); requestAnimationFrame(frame); if(document.fonts) document.fonts.load('20px "Young Serif"').catch(()=>{});});
+})();
+</script>
+
+</body>
+</html>
