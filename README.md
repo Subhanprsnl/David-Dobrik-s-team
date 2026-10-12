@@ -1,15 +1,14 @@
 # David's Halloween
 
-Three one-screen invite concepts for **David's Halloween** (Friday, October 30), built by Rumor Studio, plus a page that links them.
+Two one-screen invite concepts for **David's Halloween** (Friday, October 30), built by Rumor Studio, plus a page that links them.
 
 | Route | What it is |
 |---|---|
 | `/` | Concepts hub: phone previews, a comparison, launch notes |
-| `/flyer` | **Animated Flyer**: the supplied flyer brought to life (dripping title, rippling water, bobbing ghost) |
 | `/cinematic` | **Cinematic**: sunset pans down to the water, the ghost floats in; tap the ghost or the water |
 | `/house` | **The House**: a drone glide down the pool at David's house that settles into a living poster; tap the ghost, pool, fire pit, pumpkins or house |
 
-Every concept is a single screen with no scrolling. Each has an RSVP pop-up (name, phone, Instagram, email), a **‹ Concepts** button back to the hub, and the exact flyer lettering. Cinematic and House also have a **Flyer** button that opens the flyer with Share.
+Each concept is a single screen with no scrolling. Each has an RSVP pop-up (name, phone, Instagram, email), a **‹ Concepts** button back to the hub, and the exact flyer lettering. Both also have a **Flyer** button that opens the flyer with Share.
 
 It's plain HTML, CSS and canvas JavaScript, with **no dependencies and no framework**.
 
@@ -18,11 +17,10 @@ It's plain HTML, CSS and canvas JavaScript, with **no dependencies and no framew
 ```
 site/                    source that gets deployed
   index.html             hub
-  flyer/index.html       Animated Flyer (canvas + RSVP)
   cinematic/index.html   Cinematic (canvas + RSVP + flyer sheet)
   house/index.html       The House (2.5D canvas scene + RSVP + flyer sheet)
   assets/img/            artwork cut from the flyer, previews, icons, link-preview image
-  assets/js/rsvp.js      sends the RSVP to the API (shared by all three pages)
+  assets/js/rsvp.js      sends the RSVP to the API (shared by both pages)
 api/rsvp.js              Vercel function: validates an RSVP and forwards it to Rumor
 scripts/build.mjs        copies site/ to dist/, fills in the site URL and RSVP endpoint, checks the build
 vercel.json              build settings, clean URLs, caching and security headers
