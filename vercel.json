@@ -39,6 +39,16 @@
   ],
   "redirects": [
     {
+      "source": "/cinematic",
+      "destination": "/",
+      "permanent": false
+    },
+    {
+      "source": "/house",
+      "destination": "/",
+      "permanent": false
+    },
+    {
       "source": "/flyer",
       "destination": "/",
       "permanent": false

@@ -1,32 +1,24 @@
 # David's Halloween
 
-Two one-screen invite concepts for **David's Halloween** (Friday, October 30), built by Rumor Studio, plus a page that links them.
+The invite site for **David's Halloween** (Friday, October 30), built by Rumor Studio.
 
-| Route | What it is |
-|---|---|
-| `/` | Concepts hub: phone previews, a comparison, launch notes |
-| `/cinematic` | **Cinematic**: sunset pans down to the water, the ghost floats in; tap the ghost or the water |
-| `/house` | **The House**: a drone glide down the pool at David's house that settles into a living poster; tap the ghost, pool, fire pit, pumpkins or house |
+One screen, no scrolling. A spooky sunset pans down to the water, a ghost in sunglasses floats in on his pool float, and the flyer's title drips into place while bats cross the moon. Guests can tap the ghost (he raises a toast) or the water (it ripples), RSVP in a pop-up (name, phone, Instagram, email), or open the **Flyer** to save and share it.
 
-Each concept is a single screen with no scrolling. Each has an RSVP pop-up (name, phone, Instagram, email), a **‹ Concepts** button back to the hub, and the exact flyer lettering. Both also have a **Flyer** button that opens the flyer with Share.
-
-It's plain HTML, CSS and canvas JavaScript, with **no dependencies and no framework**.
+It's plain HTML, CSS and canvas JavaScript, with **no dependencies and no framework**. Old links to `/cinematic`, `/house` and `/flyer` redirect to the home page.
 
 ## Project layout
 
 ```
 site/                    source that gets deployed
-  index.html             hub
-  cinematic/index.html   Cinematic (canvas + RSVP + flyer sheet)
-  house/index.html       The House (2.5D canvas scene + RSVP + flyer sheet)
-  assets/img/            artwork cut from the flyer, previews, icons, link-preview image
-  assets/js/rsvp.js      sends the RSVP to the API (shared by both pages)
+  index.html             the invite (canvas scene + RSVP + flyer sheet)
+  assets/img/            artwork cut from the flyer, icons, link-preview image
+  assets/js/rsvp.js      sends the RSVP to the API
 api/rsvp.js              Vercel function: validates an RSVP and forwards it to Rumor
 scripts/build.mjs        copies site/ to dist/, fills in the site URL and RSVP endpoint, checks the build
-vercel.json              build settings, clean URLs, caching and security headers
+vercel.json              build settings, clean URLs, redirects, caching and security headers
 ```
 
-Each page's code lives in its own `index.html`. Edit there, then rebuild.
+All of the page's code lives in `site/index.html`. Edit there, then rebuild.
 
 ## Run it locally
 
@@ -45,7 +37,7 @@ Opens on http://localhost:3000. Without RSVP settings the form runs in **demo mo
 ```bash
 git init
 git add .
-git commit -m "David's Halloween concepts"
+git commit -m "David's Halloween invite"
 git branch -M main
 git remote add origin https://github.com/<you>/davids-halloween.git
 git push -u origin main
@@ -82,7 +74,7 @@ Redeploy after changing variables. Pages pick up the RSVP mode at build time.
   "email": "casper@ghost.com",
   "phone": "3105550130",
   "instagram": "@casper",
-  "concept": "house",
+  "concept": "cinematic",
   "submittedAt": "2026-10-12T09:05:57.713Z"
 }
 ```
@@ -91,12 +83,11 @@ Any 2xx response counts as saved. Anything else shows the guest "We couldn't sav
 
 ## Before this goes to thousands of people
 
-- **Connect RSVPs to Rumor.** The brief says RSVPs must go through the Studio process like a normal sign-up. This repo forwards to whatever `RSVP_FORWARD_URL` you give it. The Rumor endpoint for event 926326 (or a Studio rebuild of the chosen concept, which is how Hochstein was done) still needs to be set up and tested.
-- **Studio pipeline.** If the chosen concept moves into the Studio codebase, it has to pass that pipeline's local checks and screenshot tests, then the full CI run. This standalone repo doesn't run those.
+- **Connect RSVPs to Rumor.** The brief says RSVPs must go through the Studio process like a normal sign-up. This repo forwards to whatever `RSVP_FORWARD_URL` you give it. The Rumor endpoint for event 926326 (or a Studio rebuild of this page, which is how Hochstein was done) still needs to be set up and tested.
+- **Studio pipeline.** If this page moves into the Studio codebase, it has to pass that pipeline's local checks and screenshot tests, then the full CI run. This standalone repo doesn't run those.
 - **Test on real phones** (iPhone Safari and Android Chrome) for touch, tilt and frame rate.
 - **Confirm the "presented by fomo" credit** with David's team.
 
 ## Notes
 
-- The listing photos used as reference for The House are **not** included. They're MLS-watermarked and not needed at runtime; the house is drawn in code.
 - Respects reduced motion (jumps straight to the end screen), safe areas on notched phones, and touch-friendly 44 px buttons.
