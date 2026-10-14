@@ -2,7 +2,7 @@
   "name": "davids-halloween",
   "version": "1.0.0",
   "private": true,
-  "description": "David's Halloween microsite concepts by Rumor Studio: Animated Flyer, Cinematic, The House.",
+  "description": "David's Halloween invite site by Rumor Studio.",
   "type": "module",
   "engines": { "node": ">=18.17" },
   "scripts": {

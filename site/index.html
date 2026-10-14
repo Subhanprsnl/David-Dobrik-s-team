@@ -10,11 +10,12 @@
 <link rel="preload" as="image" href="/assets/img/palm.4a28e94d5e.webp" fetchpriority="high">
 <link rel="preload" as="image" href="/assets/img/title-davids.9ff9299410.webp" fetchpriority="high">
 <link rel="preload" as="image" href="/assets/img/title-halloween.f077893f9e.webp" fetchpriority="high">
-<link rel="preload" as="image" href="/assets/img/title-date.9373945921.webp" fetchpriority="high">
+<link rel="preload" as="image" href="/assets/img/presented-by-fomo.29fb92d45a.webp" fetchpriority="high">
 <link rel="preload" as="image" href="/assets/img/cloud-a.404e43d8cd.webp" fetchpriority="high">
 <link rel="preload" as="image" href="/assets/img/cloud-b.ef0056e5d4.webp" fetchpriority="high">
 <meta name="description" content="David's Halloween. Friday, October 30. Presented by fomo. RSVP to get on the list.">
 <meta name="rsvp-endpoint" content="__RSVP_ENDPOINT__">
+<meta name="rumor-event-url" content="__RUMOR_EVENT_URL__">
 <link rel="canonical" href="__SITE_URL__/">
 <link rel="icon" type="image/png" sizes="64x64" href="/assets/img/favicon-64.png">
 <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
@@ -101,10 +102,6 @@ canvas#scene{position:fixed;inset:0;width:100%;height:100%;display:block}
 .cta{position:fixed;left:0;right:0;bottom:calc(env(safe-area-inset-bottom,0px) + clamp(18px,4.2vh,40px));display:flex;flex-direction:column;align-items:center;gap:clamp(10px,1.8vh,16px);z-index:3;
   opacity:0;transform:translateY(14px);transition:opacity .3s ease,transform .3s cubic-bezier(.2,.8,.2,1);pointer-events:none}
 .cta.show{opacity:1;transform:none;pointer-events:auto}
-.cta img{width:clamp(78px,11vh,108px);height:auto;opacity:.85}
-.replay{position:fixed;top:calc(env(safe-area-inset-top,0px) + 12px);right:12px;z-index:3;width:44px;height:44px;border-radius:50%;border:1.5px solid rgba(239,230,210,.25);background:rgba(15,14,10,.4);color:var(--bone);display:grid;place-items:center;cursor:pointer;opacity:0;pointer-events:none;transition:opacity .3s ease}
-.replay.show{opacity:.75;pointer-events:auto}@media (hover:hover) and (pointer:fine){.replay:hover{opacity:1}}
-.replay:focus-visible{outline:2px solid var(--sun);outline-offset:2px}
 .skip{position:fixed;bottom:calc(env(safe-area-inset-bottom,0px) + 16px);right:16px;z-index:3;font:600 13px/1 "Archivo",system-ui,sans-serif;color:rgba(239,230,210,.6);background:none;border:0;padding:10px;cursor:pointer;transition:opacity .3s}
 .skip.hide{opacity:0;pointer-events:none}
 .skip:focus-visible{outline:2px solid var(--sun)}
@@ -119,45 +116,14 @@ button{touch-action:manipulation;-webkit-user-select:none;user-select:none;-webk
 
 /* ===== cinematic v4: final screen ===== */
 .cta{gap:clamp(10px,1.6vh,14px)}
-.meta{margin:0;display:flex;flex-wrap:nowrap;justify-content:center;align-items:center;gap:.25em .7em;font-family:"Archivo",system-ui,sans-serif;font-weight:700;font-stretch:125%;font-size:clamp(10.5px,min(2.9vw,1.6vh),14px);letter-spacing:.13em;white-space:nowrap;text-transform:uppercase;color:var(--bone);text-shadow:0 1px 10px rgba(0,0,0,.75)}
-.meta i{font-style:normal;color:var(--orange);font-size:.8em;letter-spacing:0}
 .actions{display:flex;gap:12px;align-items:center;justify-content:center}
-.flyer-btn{font-family:"Archivo",system-ui,sans-serif;font-weight:600;font-stretch:112%;font-size:16px;letter-spacing:.02em;color:var(--bone);background:rgba(15,14,10,.55);border:1.5px solid rgba(239,230,210,.35);border-radius:999px;padding:0 20px 0 16px;min-height:48px;display:inline-flex;align-items:center;gap:8px;cursor:pointer;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);transition:transform .16s cubic-bezier(.23,1,.32,1),border-color .15s ease,background-color .15s ease}
-@media (hover:hover) and (pointer:fine){.flyer-btn:hover{border-color:var(--sun);background:rgba(15,14,10,.75)}}
-.flyer-btn:active{transform:scale(.96)}
-.flyer-btn:focus-visible{outline:3px solid var(--sun);outline-offset:3px}
-.cta .sponsor{width:clamp(112px,15vh,156px);height:auto;opacity:.92}
 .hint{position:fixed;left:50%;top:var(--hint-top,55%);z-index:3;margin:0;transform:translate(-50%,6px);font:600 13px/1.2 "Archivo",system-ui,sans-serif;letter-spacing:.02em;color:var(--bone);background:rgba(15,14,10,.6);border:1px solid rgba(239,230,210,.2);border-radius:999px;padding:9px 14px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .3s ease-out,transform .3s cubic-bezier(.23,1,.32,1);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
 .hint.show{opacity:1;transform:translate(-50%,0);animation:hintPulse 2.4s ease-in-out 1s infinite}
 @keyframes hintPulse{50%{border-color:rgba(254,224,93,.6)}}
 canvas#scene{touch-action:none;cursor:pointer}
-dialog.flyer{max-width:min(500px,calc(100vw - 24px))}
-.fsheet{padding:14px 14px 16px;text-align:center}
-.flyer-img{display:block;width:auto;max-width:100%;max-height:calc(100dvh - 190px - env(safe-area-inset-top,0px) - env(safe-area-inset-bottom,0px));height:auto;margin:0 auto;border-radius:12px;outline:1px solid rgba(255,255,255,.1);outline-offset:-1px;-webkit-touch-callout:default;-webkit-user-select:auto;user-select:auto}
-.factions{display:flex;gap:10px;justify-content:center;margin-top:14px}
-.factions .rsvp-btn{font-size:18px;padding:.7em 1.5em .66em}
-.fnote{font-size:13px;line-height:1.4;color:#a59e8e;margin:10px 0 0;text-wrap:pretty}
-.flyer .close{background:rgba(15,14,10,.6)}
 @media (prefers-reduced-motion:reduce){.hint.show{animation:none}}
 
-.flyer-top{position:fixed;top:calc(env(safe-area-inset-top,0px) + 12px);right:64px;z-index:3;height:44px;display:inline-flex;align-items:center;gap:7px;padding:0 16px 0 13px;border-radius:999px;border:1.5px solid rgba(239,230,210,.3);background:rgba(15,14,10,.5);color:var(--bone);font-family:"Archivo",system-ui,sans-serif;font-weight:600;font-stretch:112%;font-size:15px;letter-spacing:.02em;cursor:pointer;opacity:0;pointer-events:none;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);transition:opacity .3s ease-out,transform .16s cubic-bezier(.23,1,.32,1),border-color .15s ease}
-.flyer-top.show{opacity:1;pointer-events:auto}
-@media (hover:hover) and (pointer:fine){.flyer-top:hover{border-color:var(--sun)}}
-.flyer-top:active{transform:scale(.96)}
-.flyer-top:focus-visible{outline:2px solid var(--sun);outline-offset:2px}
 
-/* location stays locked until RSVP */
-.loc{display:inline-flex;align-items:center;gap:7px;margin:-6px 0 -2px;padding:9px 14px;min-height:40px;border:1px dashed rgba(254,224,93,.45);border-radius:999px;background:rgba(15,14,10,.45);color:var(--sun);font-family:"Archivo",system-ui,sans-serif;font-weight:700;font-stretch:118%;font-size:clamp(11px,min(3vw,1.6vh),13px);letter-spacing:.12em;text-transform:uppercase;cursor:pointer;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);transition:transform .16s cubic-bezier(.23,1,.32,1),border-color .2s ease,color .3s ease,background-color .2s ease}
-@media (hover:hover) and (pointer:fine){.loc:hover{border-color:var(--sun);background:rgba(15,14,10,.7)}}
-.loc:active{transform:scale(.96)}
-.loc:focus-visible{outline:2px solid var(--sun);outline-offset:3px}
-.loc .lk{flex:none}
-.loc .shackle{transition:transform .3s cubic-bezier(.23,1,.32,1);transform-origin:16px 11px}
-.loc.open{border-style:solid;border-color:rgba(134,205,230,.45);color:var(--bone);cursor:default}
-.loc.open .shackle{transform:translate(4px,-2px) rotate(28deg)}
-.loc.open [data-loc-text]{animation:locIn .3s cubic-bezier(.23,1,.32,1) both}
-@keyframes locIn{from{opacity:0;filter:blur(6px);transform:translateY(4px)}to{opacity:1;filter:none;transform:none}}
-@media (prefers-reduced-motion:reduce){.loc.open [data-loc-text]{animation:none}.loc .shackle{transition:none}}
 
 /* hint: a quiet footnote under the buttons, never competing with the scene */
 .cta .hint{position:static;left:auto;top:auto;transform:none;margin:2px 0 0;padding:0;border:0;background:none;-webkit-backdrop-filter:none;backdrop-filter:none;animation:none;
@@ -170,28 +136,55 @@ dialog.flyer{max-width:min(500px,calc(100vw - 24px))}
 .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
 
 /* refined glass controls: quieter than the artwork, still 44px to tap */
-.replay,.flyer-top{border:1px solid rgba(239,230,210,.18);background:rgba(15,14,10,.32);-webkit-backdrop-filter:blur(12px) saturate(140%);backdrop-filter:blur(12px) saturate(140%);
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.06),0 8px 24px -12px rgba(0,0,0,.6)}
-.flyer-top{font-weight:500;font-size:14px;letter-spacing:.03em;color:rgba(239,230,210,.92)}
-.replay.show{opacity:.85}
 .skip{font-weight:500;letter-spacing:.03em;color:rgba(239,230,210,.6);background:rgba(15,14,10,.28);border:1px solid rgba(239,230,210,.12);border-radius:999px;padding:11px 15px;
   -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
 @media (hover:hover) and (pointer:fine){.skip:hover{color:var(--bone);border-color:rgba(239,230,210,.3)}}
 /* desktop: the RSVP holds its own against the wide scene */
 @media (min-width:900px) and (min-aspect-ratio:11/10){.cta .rsvp-btn{font-size:clamp(24px,3.2vh,32px);padding:.8em 2.4em .74em}}
-@media (prefers-reduced-transparency:reduce){.replay,.flyer-top,.skip{background:rgba(15,14,10,.85);-webkit-backdrop-filter:none;backdrop-filter:none}}
+@media (prefers-reduced-transparency:reduce){.skip{background:rgba(15,14,10,.85);-webkit-backdrop-filter:none;backdrop-filter:none}}
+
+/* ===== 10/14 round ===== */
+[hidden]{display:none!important}
+.sheet h2{text-wrap:balance}
+.cta{bottom:calc(env(safe-area-inset-bottom,0px) + 62px)}
+.cta .date{margin:0 0 -2px;font-family:"Young Serif",Georgia,serif;font-weight:400;font-size:clamp(30px,5vh,46px);line-height:1;letter-spacing:.01em;color:var(--sun);font-variant-numeric:tabular-nums;text-shadow:0 2px 0 rgba(0,0,0,.35),0 0 26px rgba(0,0,0,.7)}
+.foot{position:fixed;left:0;right:0;bottom:0;z-index:3;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:0 16px calc(env(safe-area-inset-bottom,0px) + 12px);
+  pointer-events:none;opacity:0;transform:translateY(8px);transition:opacity .3s ease-out,transform .3s cubic-bezier(.23,1,.32,1)}
+.foot.show{opacity:1;transform:none}
+.foot .sponsor{width:clamp(86px,11vh,118px);height:auto;opacity:.92;display:block}
+.powered{pointer-events:auto;display:inline-flex;align-items:center;gap:8px;min-height:44px;color:rgba(239,230,210,.82);text-decoration:none;
+  font:500 10px/1 "Archivo",system-ui,sans-serif;letter-spacing:.16em;text-transform:uppercase;transition:color .15s ease}
+.powered svg{height:14px;width:auto;display:block}
+@media (hover:hover) and (pointer:fine){.powered:hover{color:var(--bone)}}
+.powered:focus-visible{outline:2px solid var(--sun);outline-offset:3px;border-radius:4px}
+.rules{list-style:none;margin:0 auto 18px;padding:0;display:flex;flex-wrap:wrap;justify-content:center;gap:6px;max-width:34ch}
+.rules li{font-size:13px;line-height:1.2;color:var(--bone);background:rgba(239,230,210,.06);border:1px solid rgba(239,230,210,.14);border-radius:999px;padding:7px 11px}
+a.rsvp-btn.as-link{display:flex;align-items:center;justify-content:center;text-decoration:none;box-sizing:border-box}
+.done a.rsvp-btn.as-link{margin:6px auto 0;max-width:300px;font-size:20px;padding:.75em 1.2em .7em;white-space:nowrap}
+.text-btn{background:none;border:0;color:var(--ghost);font:600 14px/1 "Archivo",system-ui,sans-serif;padding:12px 10px;min-height:44px;cursor:pointer}
+@media (hover:hover) and (pointer:fine){.text-btn:hover{color:var(--bone)}}
+.text-btn:disabled{color:#6f695d;cursor:default}
+.text-btn:focus-visible{outline:2px solid var(--sun);outline-offset:1px;border-radius:6px}
+.code-links{display:flex;justify-content:space-between;margin-top:6px}
+.done .text-btn{display:block;margin:6px auto 0}
+.otp input{text-align:center;font-family:"Young Serif",Georgia,serif;font-size:30px;letter-spacing:.5em;padding:12px 0 12px .5em;font-variant-numeric:tabular-nums}
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.rsvp-btn:disabled{opacity:.6;cursor:default}
+@media (max-width:360px){.foot .sponsor{width:78px}.powered span{display:none}}
 </style>
 </head>
 <body data-concept="cinematic">
 <h1 class="sr-only">David's Halloween. Friday, October 30. Presented by fomo.</h1>
-<canvas id="scene" role="img" aria-label="Animated scene: a spooky sunset over palm trees and mountains. The camera pans down to the water, a ghost in sunglasses floats in on an orange pool float holding a martini, a and the title David's Halloween, 10.30, presented by fomo, drips into place while bats cross the moon. Tap the ghost to make him toast, or tap the water to make ripples."></canvas>
+<canvas id="scene" role="img" aria-label="Animated scene: a spooky sunset over palm trees and mountains. The camera pans down to the water, a ghost in sunglasses floats in on an orange pool float holding a martini, and the title David's Halloween, presented by fomo, drips into place while bats cross the moon. Tap the ghost to make him toast, or tap the water to make ripples."></canvas>
 <div class="cta" id="cta">
+  <p class="date">10.30</p>
   <div class="actions"><button class="rsvp-btn" type="button" data-open-rsvp>RSVP</button></div>
-  <img class="sponsor" src="/assets/img/cazcanes.82b3284ec3.webp" alt="Cazcanes Tequila">
   <p class="hint" id="hint" aria-hidden="true">Tap the ghost or the water</p>
 </div>
-<button class="flyer-top" id="flyerTop" type="button" data-open-flyer aria-label="View and share the flyer"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12v7a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7"/><path d="M16 6l-4-4-4 4"/><path d="M12 2v13"/></svg>Flyer</button>
-<button class="replay" id="replay" type="button" aria-label="Replay intro"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/></svg></button>
+<footer class="foot" id="foot">
+  <img class="sponsor" src="/assets/img/cazcanes.82b3284ec3.webp" alt="Cazcanes Tequila">
+  <a class="powered" href="https://therumor.com" target="_blank" rel="noopener" aria-label="Powered by Rumor"><span>Powered by</span><svg viewBox="0 0 126 24" aria-hidden="true" focusable="false"><path d="M 108.135 23.27 L 108.135 0.872 L 112.477 0.872 L 112.477 8.294 C 113.288 6.474 114.253 4.934 115.421 3.585 C 116.407 2.45 117.411 1.59 118.501 0.954 C 119.34 0.466 120.091 0.181 120.875 0.06 C 121.133 0.022 121.39 0 121.632 0 C 122.278 0 122.876 0.148 123.413 0.433 C 123.918 0.707 124.323 1.113 124.669 1.683 C 124.959 2.165 125.162 2.73 125.31 3.448 C 125.441 4.1 125.513 4.797 125.513 5.57 C 125.513 5.718 125.436 5.805 125.354 5.888 L 121.089 10.103 C 121.111 9.33 121.089 8.557 121.018 7.784 C 121.012 7.724 121.007 7.664 121.001 7.609 C 120.93 6.885 120.793 5.937 120.365 5.038 C 120.234 4.764 120.075 4.512 119.894 4.287 C 119.576 3.903 119.165 3.706 118.666 3.706 C 118.534 3.706 118.392 3.722 118.244 3.75 C 117.674 3.859 117.136 4.095 116.555 4.484 C 115.722 5.043 114.955 5.767 114.138 6.759 C 113.628 7.384 113.135 8.08 112.636 8.892 C 112.565 9.007 112.537 9.111 112.537 9.237 L 112.537 23.27 Z" fill="currentColor"/><path d="M 75.162 8.398 C 75.365 4.731 73.172 2.445 69.702 4.714 C 68.244 5.592 66.879 6.83 65.612 8.201 C 64.834 9.04 64.395 10.142 64.385 11.293 L 64.275 23.276 L 59.867 23.276 L 59.867 8.426 C 60.092 4.813 57.9 2.423 54.408 4.72 C 53.114 5.444 51.563 6.885 50.329 8.195 C 49.512 9.062 49.057 10.213 49.057 11.402 L 49.057 11.608 C 49.051 15.351 49.04 23.088 48.986 23.282 L 44.59 23.282 L 44.59 0.877 L 48.986 0.877 L 48.986 9.051 C 53.777 0.674 65.47 -6.205 64.28 9.067 C 66.901 5.027 70.508 0.022 75.436 0.022 C 76.604 0.022 77.47 0.598 78.16 1.42 C 79.109 2.555 79.586 4.007 79.586 5.487 L 79.586 23.282 L 75.162 23.282 Z" fill="currentColor"/><path d="M 25.227 24 C 22.728 24.027 20.93 22.377 20.453 19.938 C 20.321 19.346 20.261 18.688 20.261 17.937 L 20.261 0.866 L 24.668 0.866 L 24.668 16.215 C 24.674 17.531 24.833 18.682 25.578 19.62 C 26.878 21.193 29.048 20.76 30.731 19.773 C 32.672 18.649 34.267 16.374 35.489 13.601 C 35.544 13.48 35.588 13.376 35.583 13.25 C 35.577 8.892 35.583 0.866 35.583 0.866 L 39.974 0.866 L 39.974 23.271 L 35.621 23.271 L 35.621 15.24 C 33.812 19.526 30.041 23.824 25.227 24 Z" fill="currentColor"/><path d="M 91.931 0.186 C 93.932 -0.148 95.966 -0.005 97.879 0.641 C 102.116 2.006 104.55 6.145 104.835 10.525 C 105.493 17.739 101.458 24.016 93.85 24 C 86.723 23.939 83.05 18.781 82.985 12.033 C 82.946 6.359 86.076 1.085 91.931 0.186 Z M 84.607 13.244 C 86.054 16.1 89.283 18.287 92.457 19.351 C 94.913 20.135 97.32 20.535 99.923 19.74 C 103.026 18.786 104.49 15.81 104.013 12.778 C 103.783 11.386 103.163 10.109 102.111 8.864 C 99.386 5.712 94.836 3.744 90.752 3.722 C 88.17 3.667 85.429 4.846 84.426 7.143 C 83.56 8.985 83.62 11.386 84.607 13.244 Z" fill="currentColor"/><path d="M 0 0.872 L 0 23.282 L 4.396 23.282 L 4.396 10.07 C 4.396 9.944 4.435 9.846 4.495 9.725 C 5.701 7.275 7.74 4.292 10.103 3.766 C 12.91 3.224 12.992 8.371 12.948 10.114 L 17.213 5.899 C 17.295 5.816 17.372 5.729 17.372 5.581 C 17.372 4.808 17.301 4.112 17.169 3.459 C 16.742 1.086 15.13 -0.318 12.74 0.066 C 8.908 0.779 5.992 4.638 4.396 8.201 L 4.396 0.872 Z" fill="currentColor"/></svg></a>
+</footer>
 <button class="skip" id="skip" type="button">Skip intro</button>
 <div class="vignette"></div><div class="grain"></div>
 <dialog class="rsvp" id="rsvp" aria-labelledby="rsvp-h">
@@ -199,98 +192,129 @@ dialog.flyer{max-width:min(500px,calc(100vw - 24px))}
     <button class="close" type="button" aria-label="Close" data-close>
       <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M3 3l12 12M15 3L3 15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
     </button>
-    <div data-step="form">
+    <div data-step="info">
       <img class="sheet-title" loading="lazy" decoding="async" src="/assets/img/title-lockup.9ab50885e2.webp" alt="">
       <h2 id="rsvp-h">RSVP for Friday, October 30</h2>
-      <p class="lede">Doors at 6 PM. The location unlocks when you RSVP, and we'll text you the exact address.</p>
-      <form novalidate>
-        <label class="field" data-f="name"><span>Full name</span><input name="name" autocomplete="name" placeholder="Casper Ghost" required><p class="err">Add your name so we can find you at the door.</p></label>
+      <ul class="rules" aria-label="Event details">
+        <li>Doors at 6 PM.</li><li>No plus ones.</li><li>No parking, rideshare only.</li><li>Attire: Costumes mandatory.</li>
+      </ul>
+      <form data-mode="live" novalidate hidden>
         <div class="row2">
-          <label class="field" data-f="phone"><span>Phone</span><input name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="(310) 555-0130" required><p class="err">Enter a phone number we can text.</p></label>
-          <label class="field" data-f="ig"><span>Instagram</span><input name="ig" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" placeholder="@handle" required><p class="err">Add your Instagram handle, like @casper.</p></label>
+          <label class="field" data-f="first"><span>First name</span><input name="first" autocomplete="given-name" autocapitalize="words" placeholder="Casper" required><p class="err">Add your first name.</p></label>
+          <label class="field" data-f="last"><span>Last name</span><input name="last" autocomplete="family-name" autocapitalize="words" placeholder="Ghost" required><p class="err">Add your last name.</p></label>
         </div>
-        <label class="field" data-f="email"><span>Email</span><input name="email" type="email" inputmode="email" autocomplete="email" placeholder="you@email.com" required><p class="err">Enter an email like you@email.com.</p></label>
+        <label class="field" data-f="phone"><span>Mobile number</span><input name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="(310) 555-0130" required><p class="err">Enter a mobile number we can text.</p></label>
+        <div class="row2">
+          <label class="field" data-f="email"><span>Email</span><input name="email" type="email" inputmode="email" autocomplete="email" placeholder="you@email.com" required><p class="err">Enter an email like you@email.com.</p></label>
+          <label class="field" data-f="ig"><span>Instagram</span><input name="ig" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" placeholder="@handle" required><p class="err">Add your Instagram, like @casper.</p></label>
+        </div>
         <label class="hp" aria-hidden="true">Leave this empty<input name="website" tabindex="-1" autocomplete="off"></label>
-        <button class="rsvp-btn submit" type="submit">Send RSVP</button>
-        <p class="fine">Costumes encouraged. Spots are limited and confirmed by text.</p>
+        <button class="rsvp-btn submit" type="submit">Text me a code</button>
+        <p class="send-err" role="alert"></p>
+        <p class="fine">We'll text a code to confirm your number. By continuing you agree to get texts from Rumor about this event.</p>
       </form>
+      <div data-mode="handoff">
+        <a class="rsvp-btn submit as-link" href="__RUMOR_EVENT_URL__">RSVP on Rumor</a>
+        <p class="fine">Opens the Rumor app if you have it, or finishes on therumor.com.</p>
+      </div>
+    </div>
+    <div data-step="code" hidden>
+      <h2 tabindex="-1">Enter your code</h2>
+      <p class="lede">We texted a code to <b data-phone></b>.</p>
+      <form data-code novalidate>
+        <label class="field otp" data-f="code"><span class="vh">Verification code</span><input name="code" inputmode="numeric" autocomplete="one-time-code" maxlength="6" enterkeyhint="done" placeholder="••••"><p class="err">That code didn't work. Check the text and try again.</p></label>
+        <button class="rsvp-btn submit" type="submit">Confirm</button>
+        <p class="send-err" role="alert"></p>
+      </form>
+      <div class="code-links"><button type="button" class="text-btn" data-edit>Change number</button><button type="button" class="text-btn" data-resend>Resend code</button></div>
     </div>
     <div data-step="done" class="done" hidden>
       <img src="/assets/img/ghost-confirmed.0f4d6038d6.webp" alt="">
-      <h2 tabindex="-1">You're on the list</h2>
-      <p class="lede" data-done-copy>We'll text the address before Friday. Bring your best costume.</p>
-      <button class="rsvp-btn" type="button" data-close>Done</button>
+      <h2 tabindex="-1">Request sent</h2>
+      <p class="lede" data-done-copy></p>
+      <a class="rsvp-btn as-link" href="__RUMOR_EVENT_URL__">Open in the Rumor app</a>
+      <button class="text-btn" type="button" data-close>Done</button>
     </div>
-  </div>
-</dialog>
-<dialog class="rsvp flyer" id="flyerDlg" aria-label="Event flyer">
-  <div class="sheet fsheet">
-    <button class="close" type="button" aria-label="Close" data-fclose>
-      <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M3 3l12 12M15 3L3 15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-    </button>
-    <img class="flyer-img" id="flyerImg" loading="lazy" decoding="async" fetchpriority="low" src="/assets/img/flyer.ad3fc3f535.jpg" alt="Flyer: David's Halloween, 10.30, presented by fomo. A ghost in sunglasses lounges on an orange pool float with a martini under a yellow moon. Cazcanes Tequila." width="1080" height="1350">
-    <div class="factions"><button class="rsvp-btn" type="button" id="shareFlyer">Share flyer</button><button class="flyer-btn" type="button" data-fclose-rsvp>RSVP</button></div>
-    <p class="fnote" id="fnote" role="status">Press and hold the flyer to save it.</p>
   </div>
 </dialog>
 
 
 <script src="/assets/js/rsvp.js"></script>
 <script>
-// "Flyer" sheet: shows the exact flyer and shares it as an image where the browser allows
-document.addEventListener('DOMContentLoaded',function(){
-  const d=document.getElementById('flyerDlg'), img=document.getElementById('flyerImg'), note=document.getElementById('fnote'); let opener=null;
-  const rm=()=>matchMedia('(prefers-reduced-motion:reduce)').matches;
-  function open(e){opener=e&&e.currentTarget; note.textContent='Press and hold the flyer to save it.'; d.showModal(); requestAnimationFrame(()=>d.classList.add('in'));}
-  function close(cb){d.classList.remove('in'); setTimeout(()=>{d.close(); if(cb) cb(); else if(opener&&opener.focus) opener.focus();},rm()?120:260);}
-  document.querySelectorAll('[data-open-flyer]').forEach(b=>b.addEventListener('click',open));
-  d.querySelectorAll('[data-fclose]').forEach(b=>b.addEventListener('click',()=>close()));
-  d.querySelector('[data-fclose-rsvp]').addEventListener('click',()=>close(()=>window.__openRSVP&&window.__openRSVP()));
-  d.addEventListener('cancel',e=>{e.preventDefault();close();}); d.addEventListener('click',e=>{if(e.target===d) close();});
-  async function fileFromImg(){const blob=await (await fetch(img.currentSrc||img.src)).blob(); return new File([blob],'davids-halloween-flyer.jpg',{type:blob.type||'image/jpeg'});}
-  document.getElementById('shareFlyer').addEventListener('click',async()=>{
-    const text="David's Halloween. Friday 10.30. Presented by fomo.";
-    try{const f=await fileFromImg(); if(navigator.canShare&&navigator.canShare({files:[f]})){await navigator.share({files:[f],title:"David's Halloween",text}); note.textContent='Shared. See you Friday.'; return;}
-      if(navigator.share){await navigator.share({title:"David's Halloween",text}); note.textContent='Shared. See you Friday.'; return;}}
-    catch(e){if(e&&e.name==='AbortError') return;}
-    note.textContent="Sharing isn't available in this browser. Press and hold the flyer to save it, then post it.";});
-});
-
-</script>
-<script>
 (function(){
+  // RSVP sheet. Live mode (RSVP endpoint set): first/last name, phone, email, Instagram -> texted code -> done.
+  // Otherwise it hands off to the event on Rumor (therumor.com/p/<code> opens the Rumor app when installed).
   const dlg=document.getElementById('rsvp'); if(!dlg) return;
-  const form=dlg.querySelector('form'), stepForm=dlg.querySelector('[data-step="form"]'), stepDone=dlg.querySelector('[data-step="done"]');
-  let opener=null;
-  function open(e){opener=e&&e.currentTarget||document.activeElement; stepForm.hidden=false; stepDone.hidden=true;
+  const R=window.RSVP||{live:false};
+  const stepInfo=dlg.querySelector('[data-step="info"]'), stepCode=dlg.querySelector('[data-step="code"]'), stepDone=dlg.querySelector('[data-step="done"]');
+  const form=stepInfo.querySelector('form[data-mode="live"]'), handoff=stepInfo.querySelector('[data-mode="handoff"]');
+  const codeForm=stepCode.querySelector('form'), codeIn=codeForm.elements.code, resendBtn=stepCode.querySelector('[data-resend]');
+  const CODE_LEN=4;
+  form.hidden=!R.live; handoff.hidden=!!R.live;
+  let opener=null, guest=null, cooldown=0, cdTimer=0, autoT=0;
+  function show(step){[stepInfo,stepCode,stepDone].forEach(s=>s.hidden=s!==step);}
+  function open(e){opener=e&&e.currentTarget||document.activeElement;
     dlg.showModal(); requestAnimationFrame(()=>dlg.classList.add('in'));
-    setTimeout(()=>{const f=form.querySelector('input'); if(f && matchMedia('(hover:hover)').matches) f.focus();},60);}
+    setTimeout(()=>{const f=(stepCode.hidden?form:codeForm).querySelector('input'); if(f&&!f.closest('[hidden]')&&matchMedia('(hover:hover)').matches) f.focus();},60);}
   function close(){dlg.classList.remove('in'); const rm=matchMedia('(prefers-reduced-motion:reduce)').matches;
     setTimeout(()=>{dlg.close(); if(opener&&opener.focus) opener.focus();}, rm?120:260);}
   document.querySelectorAll('[data-open-rsvp]').forEach(b=>b.addEventListener('click',open));
   dlg.querySelectorAll('[data-close]').forEach(b=>b.addEventListener('click',close));
   dlg.addEventListener('cancel',e=>{e.preventDefault();close();});
   dlg.addEventListener('click',e=>{if(e.target===dlg) close();});
-  const rules={name:v=>v.trim().length>1, phone:v=>v.replace(/\D/g,'').length>=10, email:v=>/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim()), ig:v=>/^@?[A-Za-z0-9._]{1,30}$/.test(v.trim())};
-  form.querySelectorAll('input').forEach(i=>i.addEventListener('input',()=>{const f=i.closest('.field'); if(f.hasAttribute('data-invalid') && (!rules[i.name]||rules[i.name](i.value))) f.removeAttribute('data-invalid');}));
-  form.addEventListener('submit',async e=>{e.preventDefault(); let first=null;
+
+  function busy(f,on,label){const b=f.querySelector('[type="submit"]'); if(on){f.dataset.busy='1'; b.dataset.label=b.textContent; b.textContent=label; b.disabled=true;} else {delete f.dataset.busy; b.textContent=b.dataset.label||b.textContent; b.disabled=false;}}
+  function fail(f,msg){f.querySelector('.send-err').textContent=msg||'';}
+
+  // ---- details ----
+  const rules={first:v=>v.trim().length>0, last:v=>v.trim().length>0, phone:v=>{const d=v.replace(/\D/g,''); return d.length>=10&&d.length<=15;},
+    email:v=>/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim()), ig:v=>/^@?[A-Za-z0-9._]{1,30}$/.test(v.trim())};
+  form.querySelectorAll('input').forEach(i=>i.addEventListener('input',()=>{const f=i.closest('.field'); if(f&&f.hasAttribute('data-invalid')&&(!rules[i.name]||rules[i.name](i.value))) f.removeAttribute('data-invalid');}));
+  function details(){const e=form.elements; return {firstName:e.first.value.trim(), lastName:e.last.value.trim(), phone:e.phone.value.trim(), email:e.email.value.trim(), instagram:e.ig.value.trim(), website:e.website.value};}
+  async function sendCode(){const r=await R.start(guest); if(r.ok) startCooldown(); return r;}
+  form.addEventListener('submit',async e=>{e.preventDefault(); if(form.dataset.busy) return; let first=null;
     for(const k in rules){const i=form.elements[k], f=i.closest('.field'); if(!rules[k](i.value)){f.setAttribute('data-invalid',''); first=first||i;} else f.removeAttribute('data-invalid');}
     if(first){first.focus();return;}
-    if(!(await window.sendRSVP(form))) return; // posts to /api/rsvp when an endpoint is configured
-    const name=form.elements.name.value.trim().split(/\s+/)[0];
-    stepDone.querySelector('h2').textContent=`You're on the list, ${name}`;
-    stepDone.querySelector('[data-done-copy]').textContent=`The party is in Sherman Oaks. We'll text ${form.elements.phone.value.trim()} the exact address before Friday. Bring your best costume.`;
-    stepForm.hidden=true; stepDone.hidden=false; stepDone.querySelector('h2').focus();
-    window.dispatchEvent(new CustomEvent('rsvp:sent'));
+    fail(form); busy(form,true,'Sending…'); guest=details();
+    const r=await sendCode(); busy(form,false);
+    if(!r.ok){fail(form,r.error); return;}
+    if(r.verified){finish(); return;}           // honeypot, or a backend that skips the code
+    stepCode.querySelector('[data-phone]').textContent=guest.phone;
+    codeIn.value=''; codeIn.closest('.field').removeAttribute('data-invalid'); fail(codeForm);
+    show(stepCode); codeIn.focus();
   });
+
+  // ---- code: one field, so the iOS/Android "From Messages" autofill drops every digit in at once ----
+  codeIn.addEventListener('input',()=>{const v=codeIn.value.replace(/\D/g,'').slice(0,CODE_LEN); if(v!==codeIn.value) codeIn.value=v;
+    codeIn.closest('.field').removeAttribute('data-invalid'); fail(codeForm); clearTimeout(autoT);
+    if(v.length===CODE_LEN) autoT=setTimeout(()=>codeForm.requestSubmit(),250);});   // short pause so autofill finishes before we send
+  codeForm.addEventListener('submit',async e=>{e.preventDefault(); clearTimeout(autoT); if(codeForm.dataset.busy) return;
+    const code=codeIn.value.replace(/\D/g,''); if(code.length!==CODE_LEN){codeIn.closest('.field').setAttribute('data-invalid',''); codeIn.focus(); return;}
+    busy(codeForm,true,'Checking…'); const r=await R.verify({...guest,code}); busy(codeForm,false);
+    if(codeIn.value!==code){if(codeIn.value.length===CODE_LEN) codeForm.requestSubmit(); return;}   // they changed the code while we were checking
+    if(!r.ok){if(r.badCode){codeIn.closest('.field').setAttribute('data-invalid',''); codeIn.select();} else fail(codeForm,r.error); return;}
+    finish();});
+  stepCode.querySelector('[data-edit]').addEventListener('click',()=>{show(stepInfo); form.elements.phone.focus(); form.elements.phone.select();});
+  function startCooldown(){cooldown=30; tick(); clearInterval(cdTimer); cdTimer=setInterval(tick,1000);}
+  function tick(){if(cooldown<=0){clearInterval(cdTimer); resendBtn.disabled=false; resendBtn.textContent='Resend code'; return;}
+    resendBtn.disabled=true; resendBtn.textContent=`Resend in ${cooldown--}s`;}
+  resendBtn.addEventListener('click',async()=>{if(cooldown>0) return; resendBtn.disabled=true; const r=await sendCode();
+    if(r.ok){fail(codeForm); codeIn.value=''; codeIn.focus();} else {fail(codeForm,r.error); resendBtn.disabled=false;}});
+
+  function finish(){
+    stepDone.querySelector('h2').textContent=`You're on the list, ${guest.firstName}`;
+    stepDone.querySelector('[data-done-copy]').textContent=`The party is in Sherman Oaks. We'll text ${guest.phone} the exact address before Friday. Bring your best costume.`;
+    show(stepDone); stepDone.querySelector('h2').focus();
+    window.dispatchEvent(new CustomEvent('rsvp:sent'));
+  }
   window.__openRSVP=open;
 })();
 
 (()=>{
-const A={band:"/assets/img/moon-mountains.0dcd6d9cc8.webp",ghost:"/assets/img/ghost-confirmed.0f4d6038d6.webp",palm:"/assets/img/palm.4a28e94d5e.webp",davids:"/assets/img/title-davids.9ff9299410.webp",hall:"/assets/img/title-halloween.f077893f9e.webp",date:"/assets/img/title-date.9373945921.webp",c0:"/assets/img/cloud-a.404e43d8cd.webp",c1:"/assets/img/cloud-b.ef0056e5d4.webp"};
+const A={band:"/assets/img/moon-mountains.0dcd6d9cc8.webp",ghost:"/assets/img/ghost-confirmed.0f4d6038d6.webp",palm:"/assets/img/palm.4a28e94d5e.webp",davids:"/assets/img/title-davids.9ff9299410.webp",hall:"/assets/img/title-halloween.f077893f9e.webp",lockup:"/assets/img/presented-by-fomo.29fb92d45a.webp",c0:"/assets/img/cloud-a.404e43d8cd.webp",c1:"/assets/img/cloud-b.ef0056e5d4.webp"};
 const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
 const cv=document.getElementById('scene'), ctx=cv.getContext('2d');
-const flyerTop=document.getElementById('flyerTop'), cta=document.getElementById('cta'), replay=document.getElementById('replay'), skip=document.getElementById('skip'), hint=document.getElementById('hint');
+const foot=document.getElementById('foot'), cta=document.getElementById('cta'), skip=document.getElementById('skip'), hint=document.getElementById('hint');
 let W,H,dpr;
 const clamp=(x,a,b)=>Math.max(a,Math.min(b,x)), lerp=(a,b,t)=>a+(b-a)*t;
 const eOut=x=>{x=clamp(x,0,1);return 1-Math.pow(1-x,3)}, eOutQ=x=>{x=clamp(x,0,1);return 1-Math.pow(1-x,5)}, eIO=x=>{x=clamp(x,0,1);return x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2};
@@ -306,10 +330,9 @@ function fit(){dpr=Math.min(devicePixelRatio||1,2); W=innerWidth; H=innerHeight;
 function layout(){
   const cs=getComputedStyle(document.documentElement), safeTop=parseFloat(cs.paddingTop)||0, safeBot=parseFloat(cs.paddingBottom)||0;
   const wide=W/H>1.1;
-  const titleW=Math.min(W*(wide?0.5:0.9),H*(wide?0.37:0.29)/0.579,820), titleH=titleW*0.579;
-  // keep the title clear of the Flyer + replay buttons (top-right) when it is wide enough to reach them
-  const titleTop=safeTop+((W/2+titleW/2>W-180)?64:Math.max(H*0.04,14));
-  const ctaH=cta.offsetHeight||150, ctaTop=H-safeBot-Math.max(H*0.03,14)-ctaH;
+  const titleW=Math.min(W*(wide?0.5:0.86),H*(wide?0.38:0.31)/0.64,820), titleH=titleW*0.64;   // DAVID'S / HALLOWEEN / PRESENTED BY fomo
+  const titleTop=safeTop+Math.max(H*0.045,18);
+  const ctaTop=(cta.getBoundingClientRect().top||H*0.78)-6;   // CTA sits above the footer; measure where it really is
   const sB0=clamp(Math.max(W/1080,H/1500),0.34,1.2);
   const horizon=wide?Math.max(titleTop+titleH+H*0.08,H*0.5):Math.min(titleTop+titleH+185*sB0*0.95,H*0.48);
   const sBand=wide?clamp((horizon-titleTop-titleH*0.55)/185,0.4,1.35):sB0;
@@ -493,7 +516,8 @@ function frame(now){
     for(let i=0;i<COLS;i++){const q=clamp((tl-colDelay[i]*0.84)/0.63,0,1); if(q<1) full=false; if(q<=0) continue; const e=1-Math.pow(1-q,2.4);
       ctx.rect(hx+i*cw*k-0.5,hy-2,cw*k+1,HH*e*k+2);}
     if(!full) ctx.clip(); ctx.drawImage(Hi,hx,hy,HW*k,HH*k); ctx.restore();}
-  const tdt=eOut((t-T.dt0)/0.35); if(tdt>0){ctx.globalAlpha=tdt; ctx.drawImage(imgs.date,tx+140*k,tt+(462+(1-tdt)*10)*k,660*k,90*k);}
+  // PRESENTED BY / fomo, centred under HALLOWEEN as on the updated flyer
+  const tdt=eOut((t-T.dt0)/0.35); if(tdt>0){const lw=360, lh=lw*imgs.lockup.height/imgs.lockup.width; ctx.globalAlpha=tdt; ctx.drawImage(imgs.lockup,tx+(475-lw/2)*k,tt+(452+(1-tdt)*10)*k,lw*k,lh*k);}
   ctx.globalAlpha=1;
   // paint keeps dripping from the lettering
   if(!RM&&t>T.dt0+0.6){ if(t>nextDrip){const q=tips[(Math.random()*tips.length)|0]; drips.push({x:q[0],y:q[1]-6,v:0,life:0,len:0}); nextDrip=t+(party?0.5:2.2)+Math.random()*(party?1:3);}
@@ -507,7 +531,7 @@ function frame(now){
     if(q.kind==='star') star4(q.x,q.y,q.r*(0.6+q.life),q.c,Math.min(1,q.life*1.6)); else {ctx.globalAlpha=Math.min(1,q.life*2); ctx.fillStyle=q.c; ctx.beginPath(); ctx.arc(q.x,q.y,q.r,0,Math.PI*2); ctx.fill(); ctx.globalAlpha=1;}}
   // words from the ghost
   drawWords(ctx,t,L.titleTop+L.titleH);
-  if(t>=T.end&&!done){done=true; cta.classList.add('show'); replay.classList.add('show'); flyerTop.classList.add('show'); skip.classList.add('hide'); layout(); if(!interacted&&!RM) setTimeout(()=>{if(!interacted) hint.classList.add('show');},900);}
+  if(t>=T.end&&!done){done=true; cta.classList.add('show'); foot.classList.add('show'); skip.classList.add('hide'); layout(); if(!interacted&&!RM) setTimeout(()=>{if(!interacted) hint.classList.add('show');},900);}
   requestAnimationFrame(frame);
 }
 function bubble(x,y,s,a){const fs=Math.max(14,Math.min(W,H)*0.03); ctx.save(); ctx.font=`${fs}px "Young Serif",Georgia,serif`;
@@ -516,12 +540,12 @@ function bubble(x,y,s,a){const fs=Math.max(14,Math.min(W,H)*0.03); ctx.save(); c
   ctx.beginPath(); ctx.roundRect(-w/2,-h,w,h,h/2); ctx.moveTo(-w*0.18,-1); ctx.lineTo(-w*0.3,h*0.42); ctx.lineTo(-w*0.02,-1); ctx.fill(); ctx.stroke();
   ctx.fillStyle='#fee05d'; ctx.fillRect(-w*0.2,-4,w*0.2,5); ctx.fillStyle='#0f0e0a'; ctx.textAlign='center'; ctx.textBaseline='middle'; ctx.fillText(s,0,-h/2+1); ctx.restore(); ctx.globalAlpha=1;}
 // one word slot: each toast word rotates and focuses in while the last one blurs out above it, so words never read as stacked
-const SKYBATS=[]; let nextSkyBats=1.6;
+const SKYBATS=[]; let nextSkyBats=0.9;
 // bats cross the sky every few seconds, behind the title (ambient, not tied to taps)
 function drawSkyBats(t,hz,s){
-  if(t>=nextSkyBats){const n=1+(Math.random()*3|0), dir=Math.random()<0.6?-1:1, y0=hz-s*(35+Math.random()*160), sc=0.65+Math.random()*0.5, sp=0.14+Math.random()*0.06;
-    for(let i=0;i<n;i++) SKYBATS.push({t:t+i*0.22,dir,x0:dir<0?W*1.08+i*24:-W*0.08-i*24,y:y0+(Math.random()-0.5)*40,s:sc*(0.8+Math.random()*0.35),sp,ph:Math.random()*6});
-    nextSkyBats=t+5+Math.random()*4;}
+  if(t>=nextSkyBats){const n=2+(Math.random()*4|0), dir=Math.random()<0.55?-1:1, high=Math.random()<0.4, y0=hz-s*(high?170+Math.random()*190:30+Math.random()*150), sc=(high?0.5:0.65)+Math.random()*0.55, sp=0.12+Math.random()*0.1;
+    for(let i=0;i<n;i++) SKYBATS.push({t:t+i*(0.12+Math.random()*0.2),dir,x0:dir<0?W*1.08+i*22:-W*0.08-i*22,y:y0+(Math.random()-0.5)*56,s:sc*(0.75+Math.random()*0.45),sp:sp*(0.9+Math.random()*0.25),ph:Math.random()*6});
+    nextSkyBats=t+1.4+Math.random()*2.2;}
   ctx.fillStyle='#050403';
   for(let i=SKYBATS.length-1;i>=0;i--){const b=SKYBATS[i], a=t-b.t; if(a<0) continue; const x=b.x0+b.dir*a*W*b.sp*1.4; if(a>14||x<-W*0.25||x>W*1.25){SKYBATS.splice(i,1);continue;}
     const y=b.y+Math.sin(a*2.2+b.ph)*H*0.012, sz=Math.max(9,Math.min(W,H)*0.027*b.s); bat(x,y,sz,Math.sin(t*16+b.ph));}
@@ -580,7 +604,6 @@ addEventListener('mouseleave',()=>{P.tx=0;P.ty=0;});
 addEventListener('deviceorientation',e=>{if(e.gamma==null||dragging) return; P.tx=clamp(e.gamma/25,-1,1); P.ty=clamp((e.beta-45)/25,-1,1);},{passive:true});
 addEventListener('keydown',e=>{ if(document.querySelector('dialog[open]')) return; if(e.key==='d'||e.key==='D'){const B=L.ballLive; if(B&&done) tap(B.x,B.y);} });
 skip.addEventListener('click',()=>{if(!done&&start!==null) skipTo=T.end-0.15;});
-replay.addEventListener('click',()=>{start=null; done=false; partyUntil=-9; cheer=-9; kick=0; ghostTapped=0; hov=0; ripples.length=0; parts.length=0; words.length=0; WR.cur=null; WR.prev=null; SKYBATS.length=0; nextSkyBats=1.6; cta.classList.remove('show'); replay.classList.remove('show'); flyerTop.classList.remove('show'); skip.classList.remove('hide'); hint.classList.remove('show');});
 fit();
 Promise.all(Object.keys(A).map(load)).then(()=>{ if(RM) skip.classList.add('hide'); requestAnimationFrame(frame); if(document.fonts) document.fonts.load('20px "Young Serif"').catch(()=>{});});
 })();

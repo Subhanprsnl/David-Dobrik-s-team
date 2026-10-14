@@ -1,4 +1,4 @@
-// Build: copy site/ -> dist/, fill in the site URL and RSVP endpoint, and refuse to ship a broken or leaky build.
+// Build: copy site/ -> dist/, fill in the site URL, RSVP endpoint and Rumor event link, and refuse to ship a broken or leaky build.
 // No dependencies. Runs on Vercel (`npm run build`) and locally.
 import { cp, readFile, writeFile, readdir, rm, stat } from 'node:fs/promises';
 import { join, relative } from 'node:path';
@@ -13,6 +13,7 @@ const host = process.env.SITE_URL
   || (process.env.VERCEL_URL && `https://${process.env.VERCEL_URL}`)
   || 'http://localhost:3000';
 const siteUrl = host.replace(/\/+$/, '');
+const rumorEventUrl = process.env.RUMOR_EVENT_URL || `https://therumor.com/p/${process.env.RUMOR_EVENT_CODE || '926326'}`;
 const rsvpEndpoint = process.env.RSVP_ENDPOINT ?? (process.env.RSVP_FORWARD_URL ? '/api/rsvp' : '');
 
 async function walk(dir) {
@@ -32,7 +33,7 @@ const problems = [];
 for (const file of await walk(out)) {
   if (!/\.(html|js)$/.test(file)) continue;
   let text = await readFile(file, 'utf8');
-  text = text.replaceAll('__SITE_URL__', siteUrl).replaceAll('__RSVP_ENDPOINT__', rsvpEndpoint);
+  text = text.replaceAll('__SITE_URL__', siteUrl).replaceAll('__RSVP_ENDPOINT__', rsvpEndpoint).replaceAll('__RUMOR_EVENT_URL__', rumorEventUrl);
   await writeFile(file, text);
   const rel = relative(out, file);
   // The street address must never ship: guests get it by text after they RSVP.
@@ -46,4 +47,4 @@ if (problems.length) {
   console.error('Build failed:\n  ' + problems.join('\n  '));
   process.exit(1);
 }
-console.log(`Built dist/ for ${siteUrl}  (RSVP: ${rsvpEndpoint || 'demo mode, nothing is sent'})`);
+console.log(`Built dist/ for ${siteUrl}  (RSVP: ${rsvpEndpoint || `hand-off to ${rumorEventUrl}`})`);
